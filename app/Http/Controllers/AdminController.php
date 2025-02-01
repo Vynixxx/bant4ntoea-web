@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\agenda;
 use App\Models\berita;
 use App\Models\kontak;
+use Illuminate\Support\Str;
 
 
 class AdminController extends Controller
@@ -103,12 +104,19 @@ class AdminController extends Controller
         return view('admin.pengaduan', compact('kontak'));
     }
 
+    public function adminProfil()
+    {
+        $user = user::get();
+        return view('admin.profil', compact('user'));
+    }
+
     //tambah menambah
     public function agenda(Request $agenda)
     {
         // Validasi input
         $agenda->validate([
             'judul' => 'required|string|max:255',
+            'slug' => 'unique:berita,slug',
             'tanggal' => 'required|date',
             'keterangan' => 'required|string',
         ]);
@@ -116,6 +124,7 @@ class AdminController extends Controller
         // Simpan ke database
         agenda::create([
             'judul' => $agenda->judul,
+            'slug' => $agenda->slug,
             'tanggal' => $agenda->tanggal,
             'keterangan' => $agenda->keterangan,
         ]);
@@ -127,41 +136,43 @@ class AdminController extends Controller
             return redirect()->route('admin.tambahagenda')->with('failed', 'Gagal menambahkan agenda.');
         }
     }
-    public function berita(Request $berita)
+
+    public function berita(Request $request)
     {
         // Validasi input
-        $berita->validate([
+        $request->validate([
             'judul' => 'required|string|max:255',
+            'slug' => 'unique:berita,slug',
             'berita' => 'required|string',
             'gambar' => 'required|image|max:5120', // Maksimal ukuran 5MB
             'tanggal' => 'required|date',
             'tag' => 'required|string',
         ]);
+    
         // Menyimpan berita ke database
         $berita = new Berita;
-        $berita->judul = $validated['judul'];
-        $berita->berita = $validated['berita'];
-        $berita->tanggal = $validated['tanggal'];
-        $berita->tag = $validated['tag'];
-
+        $berita->judul = $request->input('judul');
+        $berita->slug = $request->input('slug');
+        $berita->berita = $request->input('berita');
+        $berita->tanggal = $request->input('tanggal');
+        $berita->tag = $request->input('tag');
+    
         // Proses penyimpanan gambar
         if ($request->hasFile('gambar')) {
             $file = $request->file('gambar');
-            $extension = $file->getClientOriginalExtension();
-            $filename = time() . '.' . $extension;
-            // Menyimpan gambar ke folder 'images/'
+            $filename = time() . '.' . $file->getClientOriginalExtension();
             $file->move(public_path('images'), $filename);
-            // Menyimpan nama gambar ke database
             $berita->gambar = $filename;
         }
-
-        // Cek apakah berhasil disimpan
-        if ($berita) {
+    
+        // Simpan ke database
+        if ($berita->save()) {
             return redirect()->route('admin.tambahberita')->with('success', 'Berita berhasil ditambahkan!');
         } else {
             return redirect()->route('admin.tambahberita')->with('failed', 'Gagal menambahkan berita.');
         }
     }
+    
 
     //edit
     public function editAgenda($id)
@@ -172,22 +183,89 @@ class AdminController extends Controller
     public function postEditagenda(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required',
-            'email' => 'required',
-            'spesialis' => 'required',
+            'judul' => 'required',
+            'slug' => 'unique:berita,slug,' . $id, // Menambahkan pengecualian untuk slug yang sedang diedit
+            'tanggal' => 'required',
+            'keterangan' => 'required',
         ]);
+        // Menemukan agenda berdasarkan ID
         $agenda = agenda::find($id);
-        $agenda->name = $request->name;
-        $agenda->email = $request->email;
-        $agenda->spesialis = $request->spesialis;
+        if (!$agenda) {
+            return redirect()->route('admin.tambahagenda')->with('failed', 'Agenda tidak ditemukan.');
+        }        
+         // Update data agenda
+        $agenda->judul = $request->input('judul');
+        // Mengupdate slug otomatis berdasarkan judul
+        $slug = Str::slug($request->input('judul')); // Menggunakan helper Str untuk generate slug
+        $agenda->slug = $slug;
 
-        $agenda->save();
-        if ($agenda) {
-            return back()->with('success', 'agenda berhasil diupdate!');
+        $agenda->tanggal = $request->input('tanggal');
+        $agenda->keterangan = $request->input('keterangan');
+
+        // Simpan ke database
+        if ($agenda->save()) {
+            return back()->with('success', 'Agenda berhasil diupdate!');
         } else {
-            return back()->with('failed', 'agenda gagal diupdate!');
+            return back()->with('failed', 'Agenda gagal diupdate!');
         }
     }
+
+    public function editBerita($id)
+    {
+        $berita = berita::find($id);
+        return view('admin.editberita', compact('berita'));
+    }
+    public function postEditBerita(Request $request, $id)
+    {
+        // Validasi input
+        $request->validate([
+            'judul' => 'required|string|max:255',
+            'slug' => 'unique:berita,slug,' . $id, // Menambahkan pengecualian untuk slug yang sedang diedit
+            'berita' => 'required|string',
+            'gambar' => 'nullable|image|max:5120', // Gambar opsional saat edit
+            'tanggal' => 'required|date',
+            'tag' => 'required|string',
+        ]);
+        
+        // Menemukan berita berdasarkan ID
+        $berita = berita::find($id);
+        if (!$berita) {
+            return redirect()->route('admin.tambahberita')->with('failed', 'Berita tidak ditemukan.');
+        }
+
+        // Update data berita
+        $berita->judul = $request->input('judul');
+        
+        // Mengupdate slug otomatis berdasarkan judul
+        $slug = Str::slug($request->input('judul')); // Menggunakan helper Str untuk generate slug
+        $berita->slug = $slug;
+
+        $berita->berita = $request->input('berita');
+        $berita->tanggal = $request->input('tanggal');
+        $berita->tag = $request->input('tag');
+
+        // Proses penyimpanan gambar jika ada gambar baru
+        if ($request->hasFile('gambar')) {
+            // Menghapus gambar lama jika ada
+            if ($berita->gambar && file_exists(public_path('images/' . $berita->gambar))) {
+                unlink(public_path('images/' . $berita->gambar));
+            }
+
+            // Menyimpan gambar baru
+            $file = $request->file('gambar');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('images'), $filename);
+            $berita->gambar = $filename;
+        }
+
+        // Simpan ke database
+        if ($berita->save()) {
+            return back()->with('success', 'Berita berhasil diupdate!');
+        } else {
+            return back()->with('failed', 'Berita gagal diupdate!');
+        }
+    }
+
 
     //selengkapnya
     public function bacaAduan($id)
@@ -217,6 +295,17 @@ class AdminController extends Controller
             return back()->with('success', 'Data berhasil dihapus!');
         } else {
             return back()->with('failed', 'Gagal menghapus data!');
+        }
+    }
+    public function deleteBerita($id)
+    {
+        $berita = berita::find($id);
+
+        $berita->delete();
+        if ($berita) {
+            return back()->with('success', 'Berita berhasil dihapus!');
+        } else {
+            return back()->with('failed', 'Gagal menghapus berita!');
         }
     }
 }

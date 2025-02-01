@@ -35,22 +35,21 @@
 
   <main id="main" class="main">
 
-    <div class="pagetitle">
-      <h1>Berita</h1>
-    </div><!-- End Page Title -->
-
     <section class="section">
       <div class="row">
           <div class="card-body">
-            <h5 class="card-title">Daftar Berita</h5>
+            <h5 class="card-title">Daftar Berita<a class="btn btn-white" href="{{ route('admin.tambahberita') }}" style="text-decoration: none;">+</a></h5>
 
             <!-- Default Table -->
             <table class="table">
               <thead>
                 <tr>
                   <th scope="col">No.</th>
-                  <th scope="col">Judul Agenda</th>
+                  <th scope="col">Gambar</th>
+                  <th scope="col">Judul Berita</th>
+                  <th scope="col">Isi Berita</th>
                   <th scope="col">Tanggal</th>
+                  <th scope="col">Tag</th>
                   <th scope="col">Aksi</th>
                 </tr>
               </thead>
@@ -58,27 +57,27 @@
               @foreach ($berita as $berita)
                 <tr>
                   <th scope="row">{{ $loop->iteration }}</th>
-                  <td>{{ $berita->judul }}</td>
-                  <td>{{ $berita->tanggal }}</td>
-                  <td>{{ $berita->keterangan }}</td>
                   <td>
-                    <a class="btn btn-outline-warning" href="">Edit</a>
+                    <img style="width: 150px" src="{{ asset('/images/' . $berita->gambar) }}" alt="foto dokter">
+                  </td>
+                  <td>{{ $berita->judul }}</td>
+                  <td>{{ $berita->berita }}</td>
+                  <td>{{ $berita->tanggal }}</td>
+                  <td>{{ $berita->tag }}</td>
+                  <td>
+                    <a class="btn btn-outline-warning" href="/admin/editBerita/{{ $berita->id }}">Edit</a>
                     <a class="btn btn-outline-danger" href="">Delete</a>
                   </td>
                 </tr>
               @endforeach
               </tbody>
             </table>
-            <div>
-                <a class="btn btn-success" href="{{ route('admin.tambahberita') }}" style="text-decoration: none;">Tambah Data +</a>    
-            </div>
             <!-- End Default Table Example -->
           </div>
       </div>
     </section>
 
   </main><!-- End #main -->
-  @include('/admin/footer')
 </body>
 
 </html>

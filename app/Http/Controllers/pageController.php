@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\kontak;
+use App\Models\berita;
+use App\Models\agenda;
 
 class pageController extends Controller
 {
@@ -30,4 +32,17 @@ class pageController extends Controller
         // Redirect kembali dengan notifikasi sukses
         return redirect()->back()->with('success', 'Pesan Anda telah terkirim.');
     }
+
+    public function detailBerita($slug)
+    {
+        $berita = berita::where('slug', $slug)->firstOrFail();
+        return view('publikasi.detailberita', compact('berita'));
+    }
+
+    public function detailAgenda($slug)
+    {
+        $agenda = agenda::where('slug', $slug)->firstOrFail();
+        return view('publikasi.detailagenda', compact('agenda'));
+    }
+
 }

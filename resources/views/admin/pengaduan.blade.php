@@ -74,7 +74,6 @@
     </section>
 
   </main><!-- End #main -->
-  @include('/admin/footer')
 </body>
 
 </html>

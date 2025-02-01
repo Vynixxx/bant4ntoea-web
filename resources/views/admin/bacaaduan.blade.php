@@ -87,7 +87,6 @@
         </div>
 
   </main><!-- End #main -->
-  @include('/admin/footer')
 
   <script>
       document.addEventListener("DOMContentLoaded", function () {

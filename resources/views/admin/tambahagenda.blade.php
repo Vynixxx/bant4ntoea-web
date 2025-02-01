@@ -66,6 +66,12 @@
                                             @enderror
                                         </span>
                                     </div><br>
+                                    <!-- Slug (Read-Only) -->
+                                    <div class="form-group mt-1">
+                                        <label class="text-secondary mb-2">Slug</label>
+                                        <input type="text" class="form-control border border-secondary" name="slug" id="slug" readonly placeholder="Kosongkan Saja">
+                                        <span class="text-danger">@error('slug') {{ $message }} @enderror</span>
+                                    </div><br>
                                     <div class="form-group mt-1">
                                         <label class="text-secondary mb-2">Tanggal</label>
                                         <input type="date" class="form-control border border-secondary form-control" name="tanggal" required value="{{ old('tanggal') }}">
@@ -83,7 +89,7 @@
                                               {{ $message }}
                                             @enderror
                                         </span>
-                                    </div><br>
+                                    </div>
                                     <button type="submit" class="btn btn-success mt-5">Tambah Data</button>
                                 </form>
                             </div>
@@ -94,7 +100,6 @@
         </div>
 
   </main><!-- End #main -->
-  @include('/admin/footer')
 </body>
 
 </html>

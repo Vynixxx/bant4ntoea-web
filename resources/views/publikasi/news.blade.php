@@ -55,36 +55,20 @@
         <h2>Berita Terkini</h2>
       </div><!-- End Section Title -->
       <div class="container">
-
-        <div class="row gy-4">
-
-          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
-            <div class="card-item">
-              <span>01</span>
-              <h4><a href="" class="stretched-link">Lorem Ipsum</a></h4>
-              <p>Ulamco laboris nisi ut aliquip ex ea commodo consequat. Et consectetur ducimus vero placeat</p>
+      <div class="row gy-4">
+        @foreach ($berita as $berita)
+          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="{{ $loop->iteration * 100 }}">
+            <div class="card-item border rounded-3 shadow-sm p-3">
+              <img src="{{ asset('/images/' . $berita->gambar) }}" alt="Gambar Berita" style="width: 100%; height: 200px; object-fit: cover;" class="mb-2 rounded">
+              <h4><a href="{{ route('detailBerita', ['slug' => $berita->slug]) }}" class="stretched-link text-decoration-none text-dark">{{ $berita->judul }}</a></h4>
+              <p>{{ Str::limit($berita->berita, 100, '...') }}</p>
+              <small class="text-muted">{{ $berita->tanggal }} | {{ $berita->tag }}</small>
             </div>
-          </div><!-- Card Item -->
-
-          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
-            <div class="card-item">
-              <span>02</span>
-              <h4><a href="" class="stretched-link">Repellat Nihil</a></h4>
-              <p>Dolorem est fugiat occaecati voluptate velit esse. Dicta veritatis dolor quod et vel dire leno para dest</p>
-            </div>
-          </div><!-- Card Item -->
-
-          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
-            <div class="card-item">
-              <span>03</span>
-              <h4><a href="" class="stretched-link">Ad ad velit qui</a></h4>
-              <p>Molestiae officiis omnis illo asperiores. Aut doloribus vitae sunt debitis quo vel nam quis</p>
-            </div>
-          </div><!-- Card Item -->
-
-        </div>
-
+          </div>
+        @endforeach
       </div>
+    </div>
+
 
     </section><!-- /Why Us Section -->
 

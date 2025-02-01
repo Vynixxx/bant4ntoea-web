@@ -35,14 +35,10 @@
 
   <main id="main" class="main">
 
-    <div class="pagetitle">
-      <h1>Kepegawaian</h1>
-    </div><!-- End Page Title -->
-
     <section class="section">
       <div class="row">
           <div class="card-body">
-            <h5 class="card-title">Daftar Kepegawaian</h5>
+            <h5 class="card-title">Daftar Kepegawaian<a class="btn btn-white" href="{{ route('admin.tambahpegawai') }}" style="text-decoration: none;">+</a></h5>
 
             <!-- Default Table -->
             <table class="table">
@@ -63,16 +59,12 @@
                 </tr>
               </tbody>
             </table>
-            <div>
-                <a class="btn btn-success" href="{{ route('admin.tambahpegawai') }}" style="text-decoration: none;">Tambah Data +</a>    
-            </div>
             <!-- End Default Table Example -->
           </div>
       </div>
     </section>
 
   </main><!-- End #main -->
-  @include('/admin/footer')
 </body>
 
 </html>

@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Agenda Desa Bantan Tua</title>
+  <title>Berita Desa Bantan Tua</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
 
@@ -46,28 +46,20 @@
                       <li class="breadcrumb-item">
                       <a href="{{ route('home') }}" class="text-decoration-none">Beranda</a>
                       </li>
-                      <li class="breadcrumb-item active" aria-current="page">Agenda Desa</li>
+                      <li class="breadcrumb-item active" aria-current="page">Berita Terkini | {{ $berita->judul }}</li>
                   </ol>
                 </nav>
             </div>
         </div>
         <!-- End Breadcrumbs -->
-        <h2>Agenda Desa</h2>
-      </div><!-- End Section Title -->
-      <div class="container">
-      <div class="row gy-4">
-        @foreach ($agenda as $agenda)
-          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="{{ $loop->iteration * 100 }}">
-            <div class="card-item border rounded-3 shadow-sm p-3">
-              <h4><a href="{{ route('detailAgenda', ['slug' => $agenda->slug]) }}" class="stretched-link text-decoration-none text-dark">{{ $agenda->judul }}</a></h4>
-              <p>{{ Str::limit($agenda->keterangan, 100, '...') }}</p>
-              <small class="text-muted">{{ $agenda->tanggal }}</small>
-            </div>
-          </div>
-        @endforeach
-      </div>
-    </div>
-    </div>
+        <div class="container mt-4">
+            <h2>{{ $berita->judul }}</h2>
+            <img src="{{ asset('/images/' . $berita->gambar) }}" alt="Gambar Berita" style="width:100%; max-width:600px;">
+            <p class="mt-3">{{ $berita->berita }}</p>
+            <small class="text-muted">Tanggal: {{ $berita->tanggal }} | Tag: {{ $berita->tag }}</small>
+        </div>
+
+
     </section><!-- /Why Us Section -->
 
   </main>

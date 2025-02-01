@@ -95,45 +95,31 @@
 
       </section><!-- /About Section -->
 
-    <!-- Why Us Section -->
-    <section id="why-us" class="why-us section">
+    <!-- Berita Terkini Section -->
+    <section id="berita-terkini" class="why-us section">
+        <div class="container">
+            <div class="row gy-4 align-items-center">
+                <div class="col-12 d-flex justify-content-between align-items-center" data-aos="fade-up">
+                    <h3>Berita Terkini</h3>
+                    <p class="mb-0"><a href="{{ route('news') }}">Selengkapnya</a></p>
+                </div>
+            </div>
 
-      <div class="container">
+            <div class="row gy-4">
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card-item">
+                        <!-- Gambar Berita -->
+                        <img src="" alt="Gambar Berita" class="img-fluid mb-3" style="width:100%; max-width:300px;">
 
-      <div class="row gy-4 align-items-center">
-        <div class="col-12 d-flex justify-content-between align-items-center" data-aos="fade-up">
-          <h3>Berita Terkini</h3>
-          <p class="mb-0"><a href="{{ route('news') }}">Selengkapnya</a></p>
+                        <h4><a href="" class="stretched-link"></a></h4>
+                        <p></p>
+                        <small class="text-muted">Tanggal: | Tag: </small>
+                    </div>
+                </div><!-- Card Item -->
+            </div>
         </div>
-      </div>
+    </section><!-- /Berita Terkini Section -->
 
-      <div class="row gy-4">
-        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
-          <div class="card-item">
-            <span>01</span>
-            <h4><a href="" class="stretched-link">Lorem Ipsum</a></h4>
-            <p>Ulamco laboris nisi ut aliquip ex ea commodo consequat. Et consectetur ducimus vero placeat</p>
-          </div>
-        </div><!-- Card Item -->
-
-        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
-          <div class="card-item">
-            <span>02</span>
-            <h4><a href="" class="stretched-link">Repellat Nihil</a></h4>
-            <p>Dolorem est fugiat occaecati voluptate velit esse. Dicta veritatis dolor quod et vel dire leno para dest</p>
-          </div>
-        </div><!-- Card Item -->
-
-        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
-          <div class="card-item">
-            <span>03</span>
-            <h4><a href="" class="stretched-link">Ad ad velit qui</a></h4>
-            <p>Molestiae officiis omnis illo asperiores. Aut doloribus vitae sunt debitis quo vel nam quis</p>
-          </div>
-        </div><!-- Card Item -->
-      </div>
-
-    </section><!-- /Why Us Section -->
 
     <!-- Stats Section -->
     <section id="stats" class="stats section light-background">

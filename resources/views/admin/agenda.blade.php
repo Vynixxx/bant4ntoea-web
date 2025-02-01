@@ -65,7 +65,7 @@
     <section class="section">
       <div class="row">
           <div class="card-body">
-            <h5 class="card-title">Daftar Agenda</h5>
+            <h5 class="card-title">Daftar Agenda<a class="btn btn-white" href="{{ route('admin.tambahagenda') }}" style="text-decoration: none;">+</a></h5>
 
             <!-- Default Table -->
             <table class="table">
@@ -93,9 +93,6 @@
               @endforeach
               </tbody>
             </table>
-            <div>
-                <a class="btn btn-success" href="{{ route('admin.tambahagenda') }}" style="text-decoration: none;">Tambah Data +</a>    
-            </div>
             <!-- End Default Table Example -->
           </div>
       </div>
@@ -112,7 +109,6 @@
       });
   </script>
 
-  @include('/admin/footer')
 </body>
 
 </html>

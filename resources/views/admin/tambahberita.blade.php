@@ -36,7 +36,7 @@
   <main id="main" class="main">
             <div class="container">
                 <div class="container mt-3">
-                    <!-- @if (Session::get('success'))
+                    @if (Session::get('success'))
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                         <strong>Berhasil!</strong> {{ Session::get('success') }}
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -47,7 +47,7 @@
                         <strong>Gagal!</strong> {{ Session::get('failed') }}
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
-                    @endif -->
+                    @endif
                 </div>
                 <div class="row">
                     <div class="col d-flex justify-content-center">
@@ -55,25 +55,31 @@
                             <div class="card-body">
                               <div  href="" >
                                 <h5 class="card-title text-center">Tambah Berita</h5>
-                                <form action="" method="POST" enctype="multipart/form-data" >
-                                    <!-- @csrf -->
+                                <form action="{{ route('postTambahBerita') }}" method="POST" enctype="multipart/form-data" >
+                                    @csrf
                                     <div class="form-group mt-4">
                                         <label class="text-secondary mb-2">Judul Berita</label>
                                         <input class="form-control border border-secondary form-control" name="judul" required value="" type="text" >
-                                        <!-- <span class="text-danger">
+                                        <span class="text-danger">
                                             @error('judul')
                                               {{ $message }}
                                             @enderror
-                                        </span> -->
+                                        </span>
+                                    </div><br>
+                                    <!-- Slug (Read-Only) -->
+                                    <div class="form-group mt-1">
+                                        <label class="text-secondary mb-2">Slug</label>
+                                        <input type="text" class="form-control border border-secondary" name="slug" id="slug" readonly placeholder="Kosongkan Saja">
+                                        <span class="text-danger">@error('slug') {{ $message }} @enderror</span>
                                     </div><br>
                                     <div class="form-group mt-1">
                                         <label class="text-secondary mb-2">Isi Berita</label>
-                                        <input type="text" class="form-control border border-secondary form-control" name="berita" value="">
-                                        <!-- <span class="text-danger">
+                                        <textarea  type="text" class="form-control border border-secondary form-control" name="berita" value=""></textarea>
+                                        <span class="text-danger">
                                             @error('berita')
                                             {{ $message }}
                                             @enderror
-                                        </span> -->
+                                        </span>
                                     </div><br>
                                     <div class="form-group mt-1">
                                         <label class="text-secondary mb-2">Foto</label>
@@ -97,13 +103,14 @@
                                     <div class="form-group mt-1">
                                         <label class="text-secondary mb-2">Tag</label>
                                         <input class="form-control border border-secondary form-control" name="tag" required value="" type="text">
-                                        <!-- <span class="text-danger">
+                                        <div class="form-text">Harap berikan tanda tagar (#) pada setiap tag, pisahkan tag dengan spasi
+                                        <span class="text-danger">
                                             @error('tag')
                                               {{ $message }}
                                             @enderror
-                                        </span> -->
-                                    </div><br>
-                                    <button type="submit" class="btn btn-success mt-5" ">Tambah Data</button>
+                                        </span>
+                                    </div>
+                                    <button type="submit" class="btn btn-success mt-5">Tambah Data</button>
                                 </form>
                             </div>
                         </div>
@@ -113,7 +120,17 @@
         </div>
 
   </main><!-- End #main -->
-  @include('/admin/footer')
+  <script>
+    document.getElementById('judul').addEventListener('input', function () {
+        const judul = this.value;
+        const slug = judul.toLowerCase()
+                          .replace(/[^a-z0-9 -]/g, '')  // Hapus karakter non-alfanumerik
+                          .replace(/\s+/g, '-')         // Ganti spasi dengan tanda hubung
+                          .replace(/-+/g, '-');          // Hindari tanda hubung berulang
+        document.getElementById('slug').value = slug;
+    });
+</script>
+
 </body>
 
 </html>

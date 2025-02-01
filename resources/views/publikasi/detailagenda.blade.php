@@ -46,28 +46,19 @@
                       <li class="breadcrumb-item">
                       <a href="{{ route('home') }}" class="text-decoration-none">Beranda</a>
                       </li>
-                      <li class="breadcrumb-item active" aria-current="page">Agenda Desa</li>
+                      <li class="breadcrumb-item active" aria-current="page">Agenda Desa | {{ $agenda->judul }}</li>
                   </ol>
                 </nav>
             </div>
         </div>
         <!-- End Breadcrumbs -->
-        <h2>Agenda Desa</h2>
-      </div><!-- End Section Title -->
-      <div class="container">
-      <div class="row gy-4">
-        @foreach ($agenda as $agenda)
-          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="{{ $loop->iteration * 100 }}">
-            <div class="card-item border rounded-3 shadow-sm p-3">
-              <h4><a href="{{ route('detailAgenda', ['slug' => $agenda->slug]) }}" class="stretched-link text-decoration-none text-dark">{{ $agenda->judul }}</a></h4>
-              <p>{{ Str::limit($agenda->keterangan, 100, '...') }}</p>
-              <small class="text-muted">{{ $agenda->tanggal }}</small>
-            </div>
-          </div>
-        @endforeach
-      </div>
-    </div>
-    </div>
+        <div class="container mt-4">
+            <h2>{{ $agenda->judul }}</h2>
+            <p class="mt-3">{{ $agenda->keterangan }}</p>
+            <small class="text-muted">Tanggal: {{ $agenda->tanggal }}</small>
+        </div>
+
+
     </section><!-- /Why Us Section -->
 
   </main>
