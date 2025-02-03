@@ -110,6 +110,7 @@ Route::middleware([IsAdmin::class])->group(function () {
     Route::get('/admin/tambahgaleri', [AdminController::class,'tambahgaleri'])->name('admin.tambahgaleri');
     Route::get('/admin/tambahpegawai', [AdminController::class,'tambahpegawai'])->name('admin.tambahpegawai');
     Route::get('/admin/tambahstats', [AdminController::class,'tambahstats'])->name('admin.tambahstats');
+
     //with id
     Route::get('/admin/editAgenda/{id}', [adminController::class,'editAgenda'])->name('admin.editAgenda');
     Route::get('/admin/deleteAgenda/{id}', [adminController::class,'deleteAgenda'])->name('admin.deleteAgenda');

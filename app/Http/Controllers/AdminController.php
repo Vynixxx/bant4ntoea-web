@@ -11,6 +11,7 @@ use App\Models\berita;
 use App\Models\galerikegiatan;
 use App\Models\kepegawaian;
 use App\Models\kontak;
+use App\Models\statsdesa;
 use App\Models\penduduk;
 use Illuminate\Support\Str;
 
@@ -142,6 +143,12 @@ class AdminController extends Controller
     {
         $user = user::get();
         return view('admin.profil', compact('user'));
+    }
+
+    public function adminstatsdesa()
+    {
+        $statsdesa = statsdesa::get();
+        return view('admin.statsdesa', compact('statsdesa'));
     }
 
     //tambah menambah
