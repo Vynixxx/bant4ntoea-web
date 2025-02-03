@@ -61,7 +61,7 @@
             <li><a href="{{ route('home') }}">Beranda</a></li>
             <li><a href="{{ route('desa') }}" class="active">Tentang</a></li>
             <li><a href="{{ route('sdm') }}">Pemerintahan</a></li>
-            <li><a href="{{ route('sdm') }}">FAQ</a></li>
+            <li><a href="{{ route('faq') }}">FAQ</a></li>
             <li><a href="{{ route('kontak') }}">Kontak</a></li>
           </ul>
           <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
@@ -75,86 +75,96 @@
   <main class="main">
 
   <section class="bg-gray-100 py-12">
-    <div class="container mx-auto px-6 lg:px-12">
-        <!-- Breadcrumbs -->
-        <div class="row mb-8 page-title py-1" >
-        <div class="col-12 d-flex justify-content-center">
-            <nav class="breadcrumbs" data-aos="fade-up">
-            <ol class="breadcrumb bg-transparent px-3 py-2 rounded-3">
-                <li class="breadcrumb-item">
-                <a href="{{ route('home') }}" class="text-decoration-none">Beranda</a>
-                </li>
-                <li class="breadcrumb-item active" aria-current="page">Potensi Desa</li>
-            </ol>
-            </nav>
-        </div>
-        </div>
-        <!-- End Breadcrumbs -->
-        <div class="text-center mb-10">
-        <h2 class="fw-bold mb-4" data-aos="fade-up" data-aos-delay="100">
-            Memahami Potensi dan Karakteristik Desa
-        </h2>
-        <p class="text-lg text-gray-600 mt-4" data-aos="fade-up" data-aos-delay="100">
-            Desa bukan hanya sekadar tempat tinggal. Desa adalah pusat kehidupan yang penuh dengan potensi, tradisi, dan keunikan tersendiri.
-        </p>
-        </div>
+      <div class="container mx-auto px-6 lg:px-12">
+          <!-- Breadcrumbs -->
+          <div class="row mb-8 page-title py-1">
+              <div class="col-12 d-flex justify-content-center">
+                  <nav class="breadcrumbs" data-aos="fade-up">
+                      <ol class="breadcrumb bg-transparent px-3 py-2 rounded-3">
+                          <li class="breadcrumb-item">
+                              <a href="{{ route('home') }}" class="text-decoration-none">Beranda</a>
+                          </li>
+                          <li class="breadcrumb-item active" aria-current="page">Potensi Desa</li>
+                      </ol>
+                  </nav>
+              </div>
+          </div>
+          <!-- End Breadcrumbs -->
+          <div class="text-center mb-10">
+              <h2 class="fw-bold mb-4" data-aos="fade-up" data-aos-delay="100">
+                  Memahami Potensi dan Karakteristik Desa
+              </h2>
+              <p class="text-lg text-gray-600 mt-4" data-aos="fade-up" data-aos-delay="100">
+                  Desa bukan hanya sekadar tempat tinggal. Desa adalah pusat kehidupan yang penuh dengan potensi, tradisi, dan keunikan tersendiri.
+              </p>
+          </div>
 
-        <div class="grid lg:grid-cols-2 gap-10">
-        <!-- Left Column -->
-        <div class="space-y-6">
-            <div class="p-6 bg-white rounded-2xl">
-            <h3 class="text-xl font-semibold text-gray-700" data-aos="fade-up" data-aos-delay="200">
-                Apa Itu Desa?
-            </h3>
-            <p class="mt-4 text-gray-600" data-aos="fade-up" data-aos-delay="200">
-                Desa sering diasosiasikan dengan istilah kampung, yaitu wilayah yang jauh dari keramaian kota, dihuni oleh masyarakat yang sebagian besar mata pencahariannya adalah pertanian. Menurut Daldjoeni (2003), desa adalah pemukiman manusia di luar kota dengan kehidupan agraris sebagai inti.
-            </p>
-            </div>
+          <!-- Tambahkan kalimat baru di sini -->
+          <div class="p-6 bg-white rounded-2xl mb-6">
+              <h3 class="text-xl font-semibold text-gray-700" data-aos="fade-up" data-aos-delay="200">
+                  Sejarah Desa Bantan Tua
+              </h3>
+              <p class="mt-4 text-gray-600" data-aos="fade-up" data-aos-delay="200">
+                  Desa Bantan Tua adalah desa hasil pemekaran dari keputusan pemerintah yang kembali memberi kesempatan bagi semua desa di Kabupaten Bengkalis untuk mengajukan permohonan kepada pemerintah sesuai prosedur untuk dimekarkan tetapi sesuai dengan luas wilayah dan jumlah penduduknya pada tahun 2014 lalu. Kemudian, Desa Bantan Tua dimekarkan menjadi 2(dua) desa yaitu Desa Induk tetap bernama Desa Bantan Tua dan Desa Pemekaran bernama Desa Pasiran berkat perjuangan para tokoh masyarakat Pasiran Desa Bantan Tua ketika itu.
+              </p>
+          </div>
 
-            <div class="p-6 bg-white rounded-2xl">
-            <h3 class="text-xl font-semibold text-gray-700" data-aos="fade-up" data-aos-delay="300">
-                Definisi Berdasarkan UU No. 6 Tahun 2014
-            </h3>
-            <p class="mt-4 text-gray-600" data-aos="fade-up" data-aos-delay="300">
-                Desa adalah kesatuan masyarakat hukum dengan batas wilayah tertentu yang memiliki kewenangan mengatur urusan pemerintahan, kepentingan masyarakat, dan hak tradisional yang diakui dalam sistem pemerintahan Indonesia.
-            </p>
-            </div>
-        </div>
+          <div class="grid lg:grid-cols-2 gap-10">
+              <!-- Left Column -->
+              <div class="space-y-6">
+                  <div class="p-6 bg-white rounded-2xl">
+                      <h3 class="text-xl font-semibold text-gray-700" data-aos="fade-up" data-aos-delay="200">
+                          Apa Itu Desa?
+                      </h3>
+                      <p class="mt-4 text-gray-600" data-aos="fade-up" data-aos-delay="200">
+                          Desa sering diasosiasikan dengan istilah kampung, yaitu wilayah yang jauh dari keramaian kota, dihuni oleh masyarakat yang sebagian besar mata pencahariannya adalah pertanian. Menurut Daldjoeni (2003), desa adalah pemukiman manusia di luar kota dengan kehidupan agraris sebagai inti.
+                      </p>
+                  </div>
 
-        <!-- Right Column -->
-        <div class="space-y-6">
-            <div class="p-6 bg-white rounded-2xl">
-            <h3 class="text-xl font-semibold text-gray-700" data-aos="fade-up" data-aos-delay="300">
-                Ciri-Ciri Desa
-            </h3>
-            <ul class="list-disc list-inside mt-4 text-gray-600" data-aos="fade-up" data-aos-delay="300">
-                <li>Perbandingan lahan dengan manusia cukup besar.</li>
-                <li>Pekerjaan utama masyarakat adalah pertanian.</li>
-                <li>Hubungan antarwarga masih sangat akrab.</li>
-                <li>Tradisi dan adat istiadat sangat dijunjung tinggi.</li>
-            </ul>
-            </div>
+                  <div class="p-6 bg-white rounded-2xl">
+                      <h3 class="text-xl font-semibold text-gray-700" data-aos="fade-up" data-aos-delay="300">
+                          Definisi Berdasarkan UU No. 6 Tahun 2014
+                      </h3>
+                      <p class="mt-4 text-gray-600" data-aos="fade-up" data-aos-delay="300">
+                          Desa adalah kesatuan masyarakat hukum dengan batas wilayah tertentu yang memiliki kewenangan mengatur urusan pemerintahan, kepentingan masyarakat, dan hak tradisional yang diakui dalam sistem pemerintahan Indonesia.
+                      </p>
+                  </div>
+              </div>
 
-            <div class="p-6 bg-white rounded-2xl">
-            <h3 class="text-xl font-semibold text-gray-700" data-aos="fade-up" data-aos-delay="300"> 
-                Unsur-Unsur Desa
-            </h3>
-            <ol class="list-decimal list-inside mt-4 text-gray-600" data-aos="fade-up" data-aos-delay="300">
-                <li>
-                <strong>Daerah:</strong> Meliputi tanah produktif dan non-produktif, serta penggunaannya.
-                </li>
-                <li>
-                <strong>Penduduk:</strong> Jumlah, kepadatan, dan mata pencaharian masyarakat.
-                </li>
-                <li>
-                <strong>Tata Kehidupan:</strong> Pola pergaulan yang memberikan harmoni hidup bersama.
-                </li>
-            </ol>
-            </div>
-        </div>
-        </div>
-    </div>
-    </section>
+              <!-- Right Column -->
+              <div class="space-y-6">
+                  <div class="p-6 bg-white rounded-2xl">
+                      <h3 class="text-xl font-semibold text-gray-700" data-aos="fade-up" data-aos-delay="300">
+                          Ciri-Ciri Desa
+                      </h3>
+                      <ul class="list-disc list-inside mt-4 text-gray-600" data-aos="fade-up" data-aos-delay="300">
+                          <li>Perbandingan lahan dengan manusia cukup besar.</li>
+                          <li>Pekerjaan utama masyarakat adalah pertanian.</li>
+                          <li>Hubungan antarwarga masih sangat akrab.</li>
+                          <li>Tradisi dan adat istiadat sangat dijunjung tinggi.</li>
+                      </ul>
+                  </div>
+
+                  <div class="p-6 bg-white rounded-2xl">
+                      <h3 class="text-xl font-semibold text-gray-700" data-aos="fade-up" data-aos-delay="300">
+                          Unsur-Unsur Desa
+                      </h3>
+                      <ol class="list-decimal list-inside mt-4 text-gray-600" data-aos="fade-up" data-aos-delay="300">
+                          <li>
+                              <strong>Daerah:</strong> Meliputi tanah produktif dan non-produktif, serta penggunaannya.
+                          </li>
+                          <li>
+                              <strong>Penduduk:</strong> Jumlah, kepadatan, dan mata pencaharian masyarakat.
+                          </li>
+                          <li>
+                              <strong>Tata Kehidupan:</strong> Pola pergaulan yang memberikan harmoni hidup bersama.
+                          </li>
+                      </ol>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
 
   </main>
 

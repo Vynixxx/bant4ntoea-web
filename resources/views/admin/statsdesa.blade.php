@@ -44,17 +44,19 @@
               <thead>
                 <tr>
                   <th scope="col">No.</th>
-                  <th scope="col">Judul Agenda</th>
-                  <th scope="col">Tanggal</th>
+                  <th scope="col">Nama Agama</th>
+                  <th scope="col">Laki-laki</th>
+                  <th scope="col">Perempuan</th>
                   <th scope="col">Aksi</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <th scope="row">1</th>
-                  <td>Brandon Jacob</td>
-                  <td>Designer</td>
-                  <td>28</td>
+                  <th scope="row"></th>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
                 </tr>
               </tbody>
             </table>
@@ -73,17 +75,17 @@
               <thead>
                 <tr>
                   <th scope="col">No.</th>
-                  <th scope="col">Judul Agenda</th>
-                  <th scope="col">Tanggal</th>
+                  <th scope="col">Jenis Penerima</th>
+                  <th scope="col">Jumlah Penerima</th>
                   <th scope="col">Aksi</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <th scope="row">1</th>
-                  <td>Brandon Jacob</td>
-                  <td>Designer</td>
-                  <td>28</td>
+                  <th scope="row"></th>
+                  <td></td>
+                  <td></td>
+                  <td></td>
                 </tr>
               </tbody>
             </table>
@@ -101,17 +103,17 @@
               <thead>
                 <tr>
                   <th scope="col">No.</th>
-                  <th scope="col">Judul Agenda</th>
-                  <th scope="col">Tanggal</th>
+                  <th scope="col">Jenis Buruh</th>
+                  <th scope="col">Jumlah Migran</th>
                   <th scope="col">Aksi</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <th scope="row">1</th>
-                  <td>Brandon Jacob</td>
-                  <td>Designer</td>
-                  <td>28</td>
+                  <th scope="row"></th>
+                  <td></td>
+                  <td></td>
+                  <td></td>
                 </tr>
               </tbody>
             </table>
@@ -129,17 +131,18 @@
               <thead>
                 <tr>
                   <th scope="col">No.</th>
-                  <th scope="col">Judul Agenda</th>
-                  <th scope="col">Tanggal</th>
+                  <th scope="col">Usia</th>
+                  <th scope="col">Laki-laki</th>
+                  <th scope="col">Perempuan</th>
                   <th scope="col">Aksi</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <th scope="row">1</th>
-                  <td>Brandon Jacob</td>
-                  <td>Designer</td>
-                  <td>28</td>
+                  <th scope="row"></th>
+                  <td></td>
+                  <td></td>
+                  <td></td>
                 </tr>
               </tbody>
             </table>
@@ -157,17 +160,18 @@
               <thead>
                 <tr>
                   <th scope="col">No.</th>
-                  <th scope="col">Judul Agenda</th>
-                  <th scope="col">Tanggal</th>
+                  <th scope="col">Jenis Golongan Darah</th>
+                  <th scope="col">Laki-laki</th>
+                  <th scope="col">Perempuan</th>
                   <th scope="col">Aksi</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <th scope="row">1</th>
-                  <td>Brandon Jacob</td>
-                  <td>Designer</td>
-                  <td>28</td>
+                  <th scope="row"></th>
+                  <td></td>
+                  <td></td>
+                  <td></td>
                 </tr>
               </tbody>
             </table>
@@ -178,24 +182,25 @@
     <section class="section">
       <div class="row">
           <div class="card-body">
-          <h5 class="card-title">Jamkesman<a class="btn btn-white" href="{{ route('admin.tambahstats') }}" style="text-decoration: none;">+</a></h5>
+          <h5 class="card-title">Jamkesmas<a class="btn btn-white" href="{{ route('admin.tambahstats') }}" style="text-decoration: none;">+</a></h5>
 
             <!-- Default Table -->
             <table class="table">
               <thead>
                 <tr>
                   <th scope="col">No.</th>
-                  <th scope="col">Judul Agenda</th>
-                  <th scope="col">Tanggal</th>
+                  <th scope="col">Kriteria</th>
+                  <th scope="col">Jumlah Penerima</th>
+                  <th scope="col">Jumlah Keluarga Penerima</th>
                   <th scope="col">Aksi</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <th scope="row">1</th>
-                  <td>Brandon Jacob</td>
-                  <td>Designer</td>
-                  <td>28</td>
+                  <th scope="row"></th>
+                  <td></td>
+                  <td></td>
+                  <td></td>
                 </tr>
               </tbody>
             </table>
@@ -213,17 +218,17 @@
               <thead>
                 <tr>
                   <th scope="col">No.</th>
-                  <th scope="col">Judul Agenda</th>
-                  <th scope="col">Tanggal</th>
+                  <th scope="col">Kriteria</th>
+                  <th scope="col">Jumlah Keluarga</th>
                   <th scope="col">Aksi</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <th scope="row">1</th>
-                  <td>Brandon Jacob</td>
-                  <td>Designer</td>
-                  <td>28</td>
+                  <th scope="row"></th>
+                  <td></td>
+                  <td></td>
+                  <td></td>
                 </tr>
               </tbody>
             </table>
@@ -241,17 +246,17 @@
               <thead>
                 <tr>
                   <th scope="col">No.</th>
-                  <th scope="col">Judul Agenda</th>
-                  <th scope="col">Tanggal</th>
+                  <th scope="col">Kriteria</th>
+                  <th scope="col">Jumlah Keluarga</th>
                   <th scope="col">Aksi</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <th scope="row">1</th>
-                  <td>Brandon Jacob</td>
-                  <td>Designer</td>
-                  <td>28</td>
+                  <th scope="row"></th>
+                  <td></td>
+                  <td></td>
+                  <td></td>
                 </tr>
               </tbody>
             </table>
@@ -269,17 +274,17 @@
               <thead>
                 <tr>
                   <th scope="col">No.</th>
-                  <th scope="col">Judul Agenda</th>
-                  <th scope="col">Tanggal</th>
+                  <th scope="col">Kriteria</th>
+                  <th scope="col">Jumlah Kehamilan</th>
                   <th scope="col">Aksi</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <th scope="row">1</th>
-                  <td>Brandon Jacob</td>
-                  <td>Designer</td>
-                  <td>28</td>
+                  <th scope="row"></th>
+                  <td></td>
+                  <td></td>
+                  <td></td>
                 </tr>
               </tbody>
             </table>
@@ -297,17 +302,18 @@
               <thead>
                 <tr>
                   <th scope="col">No.</th>
-                  <th scope="col">Judul Agenda</th>
-                  <th scope="col">Tanggal</th>
+                  <th scope="col">Kriteria</th>
+                  <th scope="col">Laki-laki</th>
+                  <th scope="col">Perempuan</th>
                   <th scope="col">Aksi</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <th scope="row">1</th>
-                  <td>Brandon Jacob</td>
-                  <td>Designer</td>
-                  <td>28</td>
+                  <th scope="row"></th>
+                  <td></td>
+                  <td></td>
+                  <td></td>
                 </tr>
               </tbody>
             </table>
@@ -325,17 +331,18 @@
               <thead>
                 <tr>
                   <th scope="col">No.</th>
-                  <th scope="col">Judul Agenda</th>
-                  <th scope="col">Tanggal</th>
+                  <th scope="col">Kriteria</th>
+                  <th scope="col">Laki-laki</th>
+                  <th scope="col">Perempuan</th>
                   <th scope="col">Aksi</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <th scope="row">1</th>
-                  <td>Brandon Jacob</td>
-                  <td>Designer</td>
-                  <td>28</td>
+                  <th scope="row"></th>
+                  <td></td>
+                  <td></td>
+                  <td></td>
                 </tr>
               </tbody>
             </table>
@@ -353,17 +360,18 @@
               <thead>
                 <tr>
                   <th scope="col">No.</th>
-                  <th scope="col">Judul Agenda</th>
-                  <th scope="col">Tanggal</th>
+                  <th scope="col">Kelompok Usia</th>
+                  <th scope="col">Laki-laki</th>
+                  <th scope="col">Perempuan</th>
                   <th scope="col">Aksi</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <th scope="row">1</th>
-                  <td>Brandon Jacob</td>
-                  <td>Designer</td>
-                  <td>28</td>
+                  <th scope="row"></th>
+                  <td></td>
+                  <td></td>
+                  <td></td>
                 </tr>
               </tbody>
             </table>
@@ -381,17 +389,18 @@
               <thead>
                 <tr>
                   <th scope="col">No.</th>
-                  <th scope="col">Judul Agenda</th>
-                  <th scope="col">Tanggal</th>
+                  <th scope="col">Kriteria</th>
+                  <th scope="col">Jumlah Penerima</th>
+                  <th scope="col">Jumlah Keluarga Penerima</th>
                   <th scope="col">Aksi</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <th scope="row">1</th>
-                  <td>Brandon Jacob</td>
-                  <td>Designer</td>
-                  <td>28</td>
+                  <th scope="row"></th>
+                  <td></td>
+                  <td></td>
+                  <td></td>
                 </tr>
               </tbody>
             </table>
@@ -409,17 +418,17 @@
               <thead>
                 <tr>
                   <th scope="col">No.</th>
-                  <th scope="col">Judul Agenda</th>
-                  <th scope="col">Tanggal</th>
+                  <th scope="col">Kriteria</th>
+                  <th scope="col">Jumlah Keluarga</th>
                   <th scope="col">Aksi</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <th scope="row">1</th>
-                  <td>Brandon Jacob</td>
-                  <td>Designer</td>
-                  <td>28</td>
+                  <th scope="row"></th>
+                  <td></td>
+                  <td></td>
+                  <td></td>
                 </tr>
               </tbody>
             </table>
@@ -437,17 +446,18 @@
               <thead>
                 <tr>
                   <th scope="col">No.</th>
-                  <th scope="col">Judul Agenda</th>
-                  <th scope="col">Tanggal</th>
+                  <th scope="col">Kriteria</th>
+                  <th scope="col">Laki-laki</th>
+                  <th scope="col">Perempuan</th>
                   <th scope="col">Aksi</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <th scope="row">1</th>
-                  <td>Brandon Jacob</td>
-                  <td>Designer</td>
-                  <td>28</td>
+                  <th scope="row"></th>
+                  <td></td>
+                  <td></td>
+                  <td></td>
                 </tr>
               </tbody>
             </table>

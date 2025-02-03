@@ -36,7 +36,7 @@
   <main id="main" class="main">
             <div class="container">
                 <div class="container mt-3">
-                    <!-- @if (Session::get('success'))
+                    @if (Session::get('success'))
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                         <strong>Berhasil!</strong> {{ Session::get('success') }}
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -47,7 +47,7 @@
                         <strong>Gagal!</strong> {{ Session::get('failed') }}
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
-                    @endif -->
+                    @endif
                 </div>
                 <div class="row">
                     <div class="col d-flex justify-content-center">
@@ -55,25 +55,25 @@
                             <div class="card-body">
                               <div  href="" >
                                 <h5 class="card-title text-center">Tambah Kepegawaian</h5>
-                                <form action="" method="POST" enctype="multipart/form-data" >
-                                    <!-- @csrf -->
-                                    <div class="form-group mt-4">
-                                        <label class="text-secondary mb-2">NIP</label>
-                                        <input class="form-control border border-secondary form-control" name="nip" required value="" type="text" >
-                                        <!-- <span class="text-danger">
-                                            @error('nip')
-                                              {{ $message }}
-                                            @enderror
-                                        </span> -->
-                                    </div><br>
+                                <form action="{{ route('postTambahPegawai') }}" method="POST" enctype="multipart/form-data" >
+                                    @csrf
                                     <div class="form-group mt-4">
                                         <label class="text-secondary mb-2">Nama Pegawai</label>
                                         <input class="form-control border border-secondary form-control" name="nama" required value="" type="text" >
-                                        <!-- <span class="text-danger">
+                                        <span class="text-danger">
                                             @error('nama')
                                               {{ $message }}
                                             @enderror
-                                        </span> -->
+                                        </span>
+                                    </div><br>
+                                    <div class="form-group mt-1">
+                                        <label class="text-secondary mb-2">NIP</label>
+                                        <input class="form-control border border-secondary form-control" name="nip" required value="" type="text"  pattern="[0-9]+" inputmode="numeric" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                                        <span class="text-danger">
+                                            @error('nip')
+                                              {{ $message }}
+                                            @enderror
+                                        </span>
                                     </div><br>
                                     <div class="form-group mt-1">
                                         <label class="text-secondary">Jenis Kelamin</label><br>
@@ -89,48 +89,48 @@
                                     <div class="form-group mt-1">
                                         <label class="text-secondary mb-2">Asal</label>
                                         <input type="text" class="form-control border border-secondary form-control" name="asal" value="">
-                                        <!-- <span class="text-danger">
+                                        <span class="text-danger">
                                             @error('asal')
                                             {{ $message }}
                                             @enderror
-                                        </span> -->
+                                        </span>
+                                    </div><br>
+                                    <div class="form-group mt-1">
+                                        <label class="text-secondary mb-2">Tanggal Lahir</label>
+                                        <input type="date" class="form-control border border-secondary form-control" name="ttl" value="">
+                                        <span class="text-danger">
+                                            @error('ttl')
+                                            {{ $message }}
+                                            @enderror
+                                        </span>
                                     </div><br>
                                     <div class="form-group mt-1">
                                         <label class="text-secondary mb-2">Jabatan</label>
                                         <input type="text" class="form-control border border-secondary form-control" name="jabatan" value="">
-                                        <!-- <span class="text-danger">
+                                        <span class="text-danger">
                                             @error('jabatan')
                                             {{ $message }}
                                             @enderror
-                                        </span> -->
+                                        </span>
                                     </div><br>
                                     <div class="form-group mt-1">
                                         <label class="text-secondary mb-2">Pendidikan Terakhir</label>
                                         <input type="text" class="form-control border border-secondary form-control" name="pend" value="">
-                                        <!-- <span class="text-danger">
+                                        <span class="text-danger">
                                             @error('pend')
                                             {{ $message }}
                                             @enderror
-                                        </span> -->
-                                    </div><br>
-                                    <div class="form-group mt-1">
-                                        <label class="text-secondary mb-2">Tipe Ruangan</label>
-                                        <input class="form-control border border-secondary form-control" name="ruang" required value="" type="text">
-                                        <!-- <span class="text-danger">
-                                            @error('ruang')
-                                              {{ $message }}
-                                            @enderror
-                                        </span> -->
+                                        </span>
                                     </div><br>
                                     <div class="form-group mt-1">
                                         <label class="text-secondary mb-2">Foto</label>
                                         <input class="form-control border border-secondary form-control" name="gambar" required value="" type="file">
                                         <div class="form-text">Maksimal ukuran foto pegawai 5MB
-                                        <!-- <span class="text-danger">
+                                        <span class="text-danger">
                                             @error('gambar')
                                               {{ $message }}
                                             @enderror
-                                        </span> -->
+                                        </span>
                                     </div><br>
                                     <button type="submit" class="btn btn-success mt-5">Tambah Data</button>
                                 </form>

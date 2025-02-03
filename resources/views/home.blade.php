@@ -172,67 +172,22 @@
       </div><!-- End Section Title -->
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="row gy-5">
-
-          <div class="col-xl-4 col-md-6 d-flex" data-aos="zoom-in" data-aos-delay="200">
-            <div class="team-member">
-              <div class="member-img">
-                <img src="assets/img/team/team-1.jpg" class="img-fluid" alt="">
-              </div>
-              <div class="member-info">
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter-x"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-                <h4>Syaiful Anwar, S. Sos</h4>
-                <span>Kepala Desa</span>
-              </div>
-            </div>
-          </div><!-- End Team Member -->
-
-          <div class="col-xl-4 col-md-6 d-flex" data-aos="zoom-in" data-aos-delay="400">
-            <div class="team-member">
-              <div class="member-img">
-                <img src="assets/img/team/team-2.jpg" class="img-fluid" alt="">
-              </div>
-              <div class="member-info">
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter-x"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-                <h4>Sarah Jhonson</h4>
-                <span>Product Manager</span>
-              </div>
-            </div>
-          </div><!-- End Team Member -->
-
-          <div class="col-xl-4 col-md-6 d-flex" data-aos="zoom-in" data-aos-delay="600">
-            <div class="team-member">
-              <div class="member-img">
-                <img src="assets/img/team/team-3.jpg" class="img-fluid" alt="">
-              </div>
-              <div class="member-info">
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter-x"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-                <h4>William Anderson</h4>
-                <span>CTO</span>
-              </div>
-            </div>
-          </div><!-- End Team Member -->
-
+        <div class="row gy-5 justify-content-center">
+            @foreach ($kepegawaian as $index => $kp)
+                <div class="col-xl-4 col-md-6 col-sm-12 d-flex justify-content-center align-items-center" data-aos="zoom-in" data-aos-delay="{{ 200 * ($index + 1) }}">
+                    <div class="team-member text-center">
+                        <div class="member-img">
+                            <img src="{{ asset('/images/' . $kp->gambar) }}" class="img-fluid rounded-3" style="object-fit: cover; width: 100%; height: 500px;" alt="{{ $kp->nama }}">
+                        </div>
+                        <div class="member-info">
+                            <h4>{{ $kp->nama }}</h4>
+                            <span>{{ $kp->jabatan }}</span>
+                        </div>
+                    </div>
+                </div><!-- End Team Member -->
+            @endforeach
         </div>
-
-      </div>
-
+    </div>
     </section><!-- /Team Section -->
 
     <!-- Faq Section -->

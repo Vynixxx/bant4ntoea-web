@@ -91,7 +91,7 @@
   </li>
 
   <li class="nav-item">
-    <a class="nav-link collapsed" href="{{ route('admin.kp') }}">
+    <a class="nav-link collapsed" href="{{ route('admin.kepegawaian') }}">
       <i class="bi bi-person"></i>
       <span>Kepegawaian</span>
     </a>

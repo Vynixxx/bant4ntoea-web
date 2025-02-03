@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\agenda;
 use App\Models\berita;
 use App\Models\galerikegiatan;
+use App\Models\kepegawaian;
 use App\Models\kontak;
 use App\Models\penduduk;
 use Illuminate\Support\Str;
@@ -125,6 +126,12 @@ class AdminController extends Controller
         return view('admin.galerikegiatan', compact('galerikegiatan'));
     }
 
+    public function adminkepegawaian()
+    {
+        $kepegawaian = kepegawaian::get();
+        return view('admin.kepegawaian', compact('kepegawaian'));
+    }
+
     public function adminPengaduan()
     {
         $kontak = kontak::get();
@@ -233,6 +240,46 @@ class AdminController extends Controller
             return redirect()->route('admin.tambahgaleri')->with('success', 'Kegiatan berhasil ditambahkan!');
         } else {
             return redirect()->route('admin.tambahgaleri')->with('failed', 'Gagal menambahkan kegiatan.');
+        }
+    }
+
+    public function kepegawaian(Request $request)
+    {
+        // Validasi input
+        $request->validate([
+            'nama' => 'required|string|max:255',
+            'nip' => 'required|numeric|unique:kepegawaian,nip',
+            'jenis_kelamin' => 'required|in:Laki-laki,Perempuan',
+            'asal' => 'required|string',
+            'ttl' => 'required|date',
+            'jabatan' => 'required|string',
+            'pend' => 'required|string',
+            'gambar' => 'required|image|max:5120', // Maksimal ukuran 5MB
+        ]);
+    
+        // Menyimpan data kepegawaian ke database
+        $kepegawaian = new Kepegawaian();
+        $kepegawaian->nama = $request->input('nama');
+        $kepegawaian->nip = $request->input('nip');
+        $kepegawaian->jenis_kelamin = $request->input('jenis_kelamin');
+        $kepegawaian->asal = $request->input('asal');
+        $kepegawaian->ttl = $request->input('ttl');
+        $kepegawaian->jabatan = $request->input('jabatan');
+        $kepegawaian->pend = $request->input('pend');
+    
+        // Proses penyimpanan gambar
+        if ($request->hasFile('gambar')) {
+            $file = $request->file('gambar');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('images'), $filename);
+            $kepegawaian->gambar = $filename;
+        }
+    
+        // Simpan ke database
+        if ($kepegawaian->save()) {
+            return redirect()->route('admin.tambahpegawai')->with('success', 'Pegawai berhasil ditambahkan!');
+        } else {
+            return redirect()->route('admin.tambahpegawai')->with('failed', 'Gagal menambahkan pegawai.');
         }
     }
 
@@ -384,6 +431,57 @@ class AdminController extends Controller
         }
     }
 
+    public function editKepegawaian($id)
+    {
+        $kepegawaian = Kepegawaian::find($id);
+        if (!$kepegawaian) {
+            return redirect()->route('admin.tambahpegawai')->with('failed', 'Pegawai tidak ditemukan.');
+        }
+        return view('admin.editkepegawaian', compact('kepegawaian'));
+    }
+
+    public function postEditKepegawaian(Request $request, $id)
+    {
+        $request->validate([
+            'nama' => 'required|string|max:255',
+            'nip' => 'required|numeric|unique:kepegawaian,nip,' . $id, // Pengecualian untuk data yang sedang diedit
+            'asal' => 'required|string',
+            'ttl' => 'required|date',
+            'jabatan' => 'required|string',
+            'pend' => 'required|string',
+            'gambar' => 'nullable|image|max:5120', // Gambar bisa kosong jika tidak diperbarui
+        ]);
+
+        // Menemukan data kepegawaian berdasarkan ID
+        $kepegawaian = Kepegawaian::find($id);
+        if (!$kepegawaian) {
+            return redirect()->route('admin.tambahpegawai')->with('failed', 'Pegawai tidak ditemukan.');
+        }
+
+        // Update data kepegawaian
+        $kepegawaian->nama = $request->input('nama');
+        $kepegawaian->nip = $request->input('nip');
+        $kepegawaian->asal = $request->input('asal');
+        $kepegawaian->ttl = $request->input('ttl');
+        $kepegawaian->jabatan = $request->input('jabatan');
+        $kepegawaian->pend = $request->input('pend');
+
+        // Update gambar jika ada file baru
+        if ($request->hasFile('gambar')) {
+            $file = $request->file('gambar');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('images'), $filename);
+            $kepegawaian->gambar = $filename;
+        }
+
+        // Simpan ke database
+        if ($kepegawaian->save()) {
+            return back()->with('success', 'Data pegawai berhasil diperbarui!');
+        } else {
+            return back()->with('failed', 'Data pegawai gagal diperbarui!');
+        }
+    }
+
 
     //selengkapnya
     public function bacaAduan($id)
@@ -435,6 +533,16 @@ class AdminController extends Controller
             return back()->with('success', 'Kegiatan berhasil dihapus!');
         } else {
             return back()->with('failed', 'Gagal menghapus kegiatan!');
+        }
+    }
+    public function deleteKepegawaian($id)
+    {
+        $Kepegawaian = Kepegawaian::find($id);
+        $Kepegawaian->delete();
+        if ($Kepegawaian) {
+            return back()->with('success', 'Pegawai berhasil dihapus!');
+        } else {
+            return back()->with('failed', 'Gagal menghapus pegawai!');
         }
     }
 }

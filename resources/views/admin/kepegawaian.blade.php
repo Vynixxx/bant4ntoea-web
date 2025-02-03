@@ -34,37 +34,91 @@
   @include('/admin/header');
 
   <main id="main" class="main">
-
+<!-- Modal Notifikasi -->
+<div class="modal fade" id="notifModal" tabindex="-1" aria-labelledby="notifModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="notifModalLabel">
+                        @if (Session::get('success'))
+                            Berhasil!
+                        @elseif (Session::get('failed'))
+                            Gagal!
+                        @endif
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    @if (Session::get('success'))
+                        <p class="text-success">{{ Session::get('success') }}</p>
+                    @elseif (Session::get('failed'))
+                        <p class="text-danger">{{ Session::get('failed') }}</p>
+                    @endif
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <section class="section">
       <div class="row">
           <div class="card-body">
-            <h5 class="card-title">Daftar Kepegawaian<a class="btn btn-white" href="{{ route('admin.tambahpegawai') }}" style="text-decoration: none;">+</a></h5>
+              <h5 class="card-title">
+                  Daftar Kepegawaian
+                  <a class="btn btn-white" href="{{ route('admin.tambahpegawai') }}" style="text-decoration: none;">+</a>
+              </h5>
 
-            <!-- Default Table -->
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">No.</th>
-                  <th scope="col">Judul Agenda</th>
-                  <th scope="col">Tanggal</th>
-                  <th scope="col">Aksi</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Brandon Jacob</td>
-                  <td>Designer</td>
-                  <td>28</td>
-                </tr>
-              </tbody>
-            </table>
-            <!-- End Default Table Example -->
+              <!-- Default Table -->
+              <table class="table">
+                  <thead>
+                      <tr>
+                          <th scope="col">No.</th>
+                          <th scope="col">Foto</th>
+                          <th scope="col">Nama Pegawai</th>
+                          <th scope="col">NIP</th>
+                          <th scope="col">Jenis Kelamin</th>
+                          <th scope="col">Tempat / Tanggal Lahir</th>
+                          <th scope="col">Jabatan Akademik</th>
+                          <th scope="col">Pendidikan Terakhir</th>
+                          <th scope="col">Aksi</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      @foreach ($kepegawaian as $kp)
+                          <tr>
+                              <th scope="row">{{ $loop->iteration }}</th>
+                              <td>
+                                  <img style="width: 150px" src="{{ asset('/images/' . $kp->gambar) }}" alt="foto kegiatan">
+                              </td>
+                              <td>{{ $kp->nama }}</td>
+                              <td>{{ $kp->nip }}</td>
+                              <td>{{ $kp->jenis_kelamin }}</td>
+                              <td>{{ $kp->asal }} / {{ $kp->ttl }}</td>
+                              <td>{{ $kp->jabatan }}</td>
+                              <td>{{ $kp->pend }}</td>
+                              <td>
+                                  <a class="btn btn-outline-warning" href="/admin/editKepegawaian/{{ $kp->id }}">Edit</a>
+                                  <a class="btn btn-outline-danger" href="/admin/deleteKepegawaian/{{ $kp->id }}">Delete</a>
+                              </td>
+                          </tr>
+                      @endforeach
+                  </tbody>
+              </table>
+              <!-- End Default Table Example -->
           </div>
       </div>
-    </section>
-
+  </section>
   </main><!-- End #main -->
+  <script>
+      document.addEventListener("DOMContentLoaded", function () {
+          var notifModal = new bootstrap.Modal(document.getElementById('notifModal'));
+          
+          @if(Session::get('success') || Session::get('failed'))
+              notifModal.show();
+          @endif
+      });
+  </script>
 </body>
 
 </html>

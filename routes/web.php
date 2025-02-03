@@ -8,13 +8,15 @@ use App\Models\berita;
 use App\Models\agenda;
 use App\Models\penduduk;
 use App\Models\galerikegiatan;
+use App\Models\kepegawaian;
 
 
 Route::get('/', function () {
     $berita = berita::orderBy('created_at', 'DESC')->get();
     $jumlahPenduduk = penduduk::where('key', 'jumlah_penduduk')->value('value'); // Ambil jumlah penduduk dari tabel Setting
+    $kepegawaian = kepegawaian::get(); 
 
-    return view('home' , compact('berita', 'jumlahPenduduk'));
+    return view('home' , compact('berita', 'jumlahPenduduk', 'kepegawaian'));
 })->name('home');
 
 Route::get('news', function () {
@@ -47,8 +49,12 @@ Route::get('/agenda', function () {
     return view('/publikasi/agenda' , compact('agenda'));
 })->name('agenda');
 Route::get('/agenda/{slug}', [pageController::class, 'detailAgenda'])->name('detailAgenda');
-Route::view('/sumberdayamanusia', 'sdm')->name('sdm');
+Route::get('/sumberdayamanusia', function () {
+    $kepegawaian = kepegawaian::get();
+    return view('sdm' , compact('kepegawaian'));
+})->name('sdm');
 Route::view('/lembagadesa', 'lemdes')->name('lemdes');
+Route::view('/faq', 'faq')->name('faq');
 
 
 // Potensi Desa
@@ -96,6 +102,7 @@ Route::middleware([IsAdmin::class])->group(function () {
     Route::get('/admin/agenda', [AdminController::class,'adminAgenda'])->name('admin.agenda');
     Route::get('/admin/berita', [AdminController::class,'adminBerita'])->name('admin.berita');
     Route::get('/admin/galerikegiatan', [AdminController::class,'admingalerikegiatan'])->name('admin.galerikegiatan');
+    Route::get('/admin/kepegawaian', [AdminController::class,'adminkepegawaian'])->name('admin.kepegawaian');
     Route::get('/admin/pengaduan', [AdminController::class,'adminPengaduan'])->name('admin.pengaduan');
     Route::get('/admin/profil', [AdminController::class,'adminProfil'])->name('admin.profil');
     Route::get('/admin/tambahagenda', [AdminController::class,'tambahagenda'])->name('admin.tambahagenda');
@@ -112,6 +119,8 @@ Route::middleware([IsAdmin::class])->group(function () {
     Route::get('/admin/deleteBerita/{id}', [adminController::class,'deleteBerita'])->name('admin.deleteBerita');
     Route::get('/admin/editGaleri/{id}', [AdminController::class,'editGaleri'])->name('admin.editGaleri');
     Route::get('/admin/deleteGaleri/{id}', [AdminController::class,'deleteGaleri'])->name('admin.deleteGaleri');
+    Route::get('/admin/editKepegawaian/{id}', [AdminController::class,'editKepegawaian'])->name('admin.editKepegawaian');
+    Route::get('/admin/deleteKepegawaian/{id}', [AdminController::class,'deleteKepegawaian'])->name('admin.deleteKepegawaian');
 
     //edit
     Route::get('/editAgenda/{id}', [AdminController::class, 'editAgenda'])->name('editAgenda');
@@ -120,10 +129,14 @@ Route::middleware([IsAdmin::class])->group(function () {
     Route::post('/postEditBerita/{id}', [AdminController::class, 'postEditBerita'])->name('postEditBerita');
     Route::get('/editGaleri/{id}', [AdminController::class, 'editGaleri'])->name('editGaleri');
     Route::post('/postEditGaleri/{id}', [AdminController::class, 'postEditGaleri'])->name('postEditGaleri');
+    Route::get('/editKepegawaian/{id}', [AdminController::class, 'editKepegawaian'])->name('editKepegawaian');
+    Route::post('/postEditKepegawaian/{id}', [AdminController::class, 'postEditKepegawaian'])->name('postEditKepegawaian');
+
     //tambah menambah
     Route::post('/tambahAgenda', [AdminController::class,'agenda'])->name('postTambahAgenda');
     Route::post('/tambahBerita', [AdminController::class,'berita'])->name('postTambahBerita');
     Route::post('/tambahGaleri', [AdminController::class,'galeri'])->name('postTambahGaleri');
+    Route::post('/tambahPegawai', [AdminController::class,'kepegawaian'])->name('postTambahPegawai');
 
     Route::post('/update-jumlah-penduduk', [AdminController::class, 'updateJumlahPenduduk'])->name('update.jumlah.penduduk');
 
@@ -150,9 +163,9 @@ Route::middleware([IsAdmin::class])->group(function () {
 Route::get('/statsdesaadmin', function () {
     return view('admin.statsdesa');
 })->name('admin.stats');
-Route::get('/kepegawaian', function () {
-    return view('admin.kepegawaian');
-})->name('admin.kp');
+// Route::get('/kepegawaian', function () {
+//     return view('admin.kepegawaian');
+// })->name('admin.kp');
 // Route::get('/pengaduan', function () {
 //     return view('admin.pengaduan');
 // })->name('admin.pengaduan');

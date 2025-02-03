@@ -61,8 +61,8 @@
             <li><a href="{{ route('home') }}">Beranda</a></li>
             <li><a href="{{ route('desa') }}">Tentang</a></li>
             <li><a href="{{ route('sdm') }}">Pemerintahan</a></li>
-            <li><a href="{{ route('faq') }}">FAQ</a></li>
-            <li><a href="{{ route('kontak') }}" class="active">Kontak</a></li>
+            <li><a href="{{ route('faq') }}" class="active">FAQ</a></li>
+            <li><a href="{{ route('kontak') }}">Kontak</a></li>
           </ul>
           <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
@@ -74,89 +74,76 @@
   </header>
   <main class="main">
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact section">
+    <!-- Faq Section -->
+    <section id="faq" class="faq section">
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2 class="fw-bold mb-4">Kontak</h2>
-        <p>Hubungi kami melalui pusat layanan, atau email untuk informasi lebih lanjut mengenai Desa Bantan Tua.</p>
+        <h2>Frequently Asked Questions</h2>
+        <p>Beberapa Pertanyaan yang Sering Diajukan.</p>
       </div><!-- End Section Title -->
 
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
+      <div class="container">
 
-        <div class="row gy-4">
+        <div class="row faq-item" data-aos="fade-up" data-aos-delay="100">
+          <div class="col-lg-5 d-flex">
+            <i class="bi bi-question-circle"></i>
+            <h4>Apa itu Desa Bantan Tua?</h4>
+          </div>
+          <div class="col-lg-7">
+            <p>
+            Desa Bantan Tua adalah sebuah desa yang terletak di Kabupaten Bengkalis, Riau. Desa ini dikenal dengan kekayaan budaya lokal dan keindahan alamnya yang menjadi daya tarik bagi wisatawan.            </p>
+          </div>
+        </div><!-- End F.A.Q Item-->
 
-          <div class="col-lg-6">
-            <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="200">
-              <i class="bi bi-geo-alt"></i>
-              <h3>Alamat</h3>
-              <p>Desa Bantan Tua, Bantan, Bengkalis, 28752</p>
-            </div>
-          </div><!-- End Info Item -->
+        <div class="row faq-item" data-aos="fade-up" data-aos-delay="200">
+          <div class="col-lg-5 d-flex">
+            <i class="bi bi-question-circle"></i>
+            <h4>Apa saja layanan yang tersedia di website Desa Bantan Tua?</h4>
+          </div>
+          <div class="col-lg-7">
+            <p>
+            Website Desa Bantan Tua menyediakan berbagai informasi penting seperti profil desa, berita terbaru, layanan administrasi seperti permohonan surat, serta informasi terkait kegiatan sosial dan budaya yang ada di desa.            </p>
+          </div>
+        </div><!-- End F.A.Q Item-->
 
-          <div class="col-lg-6 col-md-6">
-            <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="400">
-              <i class="bi bi-envelope"></i>
-              <h3>Email</h3>
-              <p>bantantua@desa.id</p>
-            </div>
-          </div><!-- End Info Item -->
+        <div class="row faq-item" data-aos="fade-up" data-aos-delay="300">
+          <div class="col-lg-5 d-flex">
+            <i class="bi bi-question-circle"></i>
+            <h4>Bagaimana cara menghubungi Pemerintah Desa Bantan Tua?</h4>
+          </div>
+          <div class="col-lg-7">
+            <p>
+            Untuk menghubungi Pemerintah Desa Bantan Tua, Anda dapat mengirimkan pesan melalui formulir kontak di website kami, atau menghubungi nomor telepon yang tertera di halaman "Contact."            </p>
+          </div>
+        </div><!-- End F.A.Q Item-->
 
-        </div>
+        <div class="row faq-item" data-aos="fade-up" data-aos-delay="400">
+          <div class="col-lg-5 d-flex">
+            <i class="bi bi-question-circle"></i>
+            <h4>Bagaimana cara mendapatkan informasi terbaru tentang Desa Bantan Tua?</h4>
+          </div>
+          <div class="col-lg-7">
+            <p>
+            Anda dapat mengikuti berita terbaru mengenai Desa Bantan Tua melalui halaman "Berita" di website kami atau mengikuti akun media sosial resmi Desa Bantan Tua untuk pembaruan secara langsung.
+Jika ada pertanyaan lain, silakan hubungi kami melalui kontak yang tersedia di website!</p>
+          </div>
+        </div><!-- End F.A.Q Item-->
 
-        <form action="{{ route('postKontak') }}" method="POST" data-aos="fade-up" data-aos-delay="400">
-          @csrf
-          <div class="row gy-4">
-            <div class="col-md-6">
-                <input type="text" name="name" class="form-control" placeholder="Nama Lengkap" required>
-            </div>
-
-            <div class="col-md-6">
-                <input type="text" id="nohp" class="form-control" name="nohp" placeholder="Nomor Telpon" required>
-            </div>
-
-            <div class="col-md-12">
-                <input type="text" class="form-control" name="alamat" placeholder="Alamat" required>
-            </div> 
-
-            <div class="col-md-12">
-                <input type="text" class="form-control" name="subject" placeholder="Judul" required>
-            </div>
-
-            <div class="col-md-12">
-                <textarea class="form-control" name="message" rows="6" placeholder="Pesan" required></textarea>
-            </div>
-
-            <div class="col-md-12 text-center">
-                <button type="submit" class="btn btn-primary shadow-sm">Kirim Pesan</button>
-            </div>
-
-            </div>
-        </form><!-- End Contact Form -->
+        <div class="row faq-item" data-aos="fade-up" data-aos-delay="500">
+          <div class="col-lg-5 d-flex">
+            <i class="bi bi-question-circle"></i>
+            <h4>Di mana lokasi Desa Bantan Tua?</h4>
+          </div>
+          <div class="col-lg-7">
+            <p>
+            Desa Bantan Tua terletak di Kabupaten Bengkalis, Provinsi Riau. Anda dapat mengakses lokasi ini melalui Google Maps dengan mencari "Desa Bantan Tua." atau <a href="https://maps.app.goo.gl/phQDUkhnhm5Qm1wh6">klik disini</a></p>
+          </div>
+        </div><!-- End F.A.Q Item-->
 
       </div>
 
-    </section><!-- /Contact Section -->
-    <!-- Modal Notifikasi -->
-    @if(Session::has('success'))
-    <div class="modal fade" id="notifModal" tabindex="-1" aria-labelledby="notifModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Berhasil!</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p class="text-success">{{ Session::get('success') }}</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    @endif
+    </section><!-- /Faq Section -->
   </main>
 
   @include('layouts.footer')
@@ -166,27 +153,7 @@
 
   <!-- Preloader -->
   <div id="preloader"></div>
-  <script>
-      document.getElementById("nohp").addEventListener("input", function (e) {
-          let value = e.target.value;
-          // Hapus karakter non-angka
-          value = value.replace(/\D/g, "");
-          // Batasi maksimal 13 angka
-          if (value.length > 13) {
-              value = value.slice(0, 13);
-          }
-          e.target.value = value;
-      });
-  </script>
-  <script>
-      document.addEventListener("DOMContentLoaded", function () {
-          var notifModal = new bootstrap.Modal(document.getElementById('notifModal'));
-          
-          @if(Session::has('success'))
-              notifModal.show();
-          @endif
-      });
-  </script>
+
   <!-- Vendor JS Files -->
   <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
   <script src="{{ asset('assets/vendor/php-email-form/validate.js') }}"></script>
