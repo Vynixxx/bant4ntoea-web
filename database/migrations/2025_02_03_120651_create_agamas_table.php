@@ -11,8 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('statsdesa', function (Blueprint $table) {
+        Schema::create('agama', function (Blueprint $table) {
             $table->id();
+            $table->string('nama'); // Menyimpan judul agenda
+            $table->string('lk'); // Menyimpan lk agenda
+            $table->string('pr'); // Menyimpan pr agenda
             $table->timestamps();
         });
     }
@@ -22,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('statsdesa');
+        Schema::dropIfExists('agama');
     }
 };

@@ -65,22 +65,21 @@
       <table class="table table-striped table-bordered" data-aos="fade-up">
         <thead class="table-dark">
           <tr>
-            <th>#</th>
-            <th>Nama</th>
-            <th>Jumlah</th>
+            <th>No.</th>
+            <th>Nama Agama</th>
+            <th>Laki-laki</th>
+            <th>Perempuan</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>1</td>
-            <td>Islam</td>
-            <td>500</td>
+            @foreach ( $agama as $agama )
+            <td>{{ $loop->iteration }}</td>
+            <td>{{ $agama->nama }}</td>
+            <td>{{ $agama->lk }}</td>
+            <td>{{ $agama->pr }}</td>
           </tr>
-          <tr>
-            <td>2</td>
-            <td>Kristen</td>
-            <td>200</td>
-          </tr>
+          @endforeach
         </tbody>
       </table>
     </div>

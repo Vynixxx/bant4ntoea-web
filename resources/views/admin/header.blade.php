@@ -105,7 +105,7 @@
   </li>
 
   <li class="nav-item">
-    <a class="nav-link collapsed" href="{{ route('admin.stats') }}">
+    <a class="nav-link collapsed" href="{{ route('admin.statsdesa') }}">
       <i class="bi bi-bar-chart-fill"></i>
       <span>Statistik Desa</span>
     </a>

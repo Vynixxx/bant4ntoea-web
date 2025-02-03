@@ -11,9 +11,12 @@ use App\Models\berita;
 use App\Models\galerikegiatan;
 use App\Models\kepegawaian;
 use App\Models\kontak;
-use App\Models\statsdesa;
 use App\Models\penduduk;
 use Illuminate\Support\Str;
+
+//statistic
+use App\Models\agama;
+
 
 
 class AdminController extends Controller
@@ -143,12 +146,6 @@ class AdminController extends Controller
     {
         $user = user::get();
         return view('admin.profil', compact('user'));
-    }
-
-    public function adminstatsdesa()
-    {
-        $statsdesa = statsdesa::get();
-        return view('admin.statsdesa', compact('statsdesa'));
     }
 
     //tambah menambah
@@ -550,6 +547,76 @@ class AdminController extends Controller
             return back()->with('success', 'Pegawai berhasil dihapus!');
         } else {
             return back()->with('failed', 'Gagal menghapus pegawai!');
+        }
+    }
+
+    //statistic
+    //agama
+    public function adminstatsdesa()
+    {
+        $agama = agama::get();
+        return view('admin.statsdesa', compact('agama'));
+    }
+    public function agama(Request $agama)
+    {
+        // Validasi input
+        $agama->validate([
+            'nama' => 'required|string|max:255',
+            'lk' => 'required|string',
+            'pr' => 'required|string',
+        ]);
+
+        // Simpan ke database
+        agama::create([
+            'nama' => $agama->nama,
+            'lk' => $agama->lk,
+            'pr' => $agama->pr,
+        ]);
+
+        // Cek apakah berhasil disimpan
+        if ($agama) {
+            return redirect()->route('admin.tambahagama')->with('success', 'Data berhasil ditambahkan!');
+        } else {
+            return redirect()->route('admin.tambahagama')->with('failed', 'Gagal menambahkan Data.');
+        }
+    }
+    public function tambahagama()
+    {
+        return view('admin.tambahagama');
+    }
+    public function editagama($id)
+    {
+        $agama = agama::find($id);
+        if (!$agama) {
+            return redirect()->route('admin.tambahagama')->with('failed', 'Data tidak ditemukan.');
+        }
+        return view('admin.editagama', compact('agama'));
+    }
+
+    public function postEditagama(Request $request, $id)
+    {
+        $request->validate([
+            'nama' => 'required|string|max:255',
+            'lk' => 'required|string',
+            'pr' => 'required|string',
+        ]);
+
+        // Menemukan data agama berdasarkan ID
+        $agama = agama::find($id);
+        if (!$agama) {
+            return redirect()->route('admin.tambahpegawai')->with('failed', 'Pegawai tidak ditemukan.');
+        }
+
+        // Update data agama
+        $agama->nama = $request->input('nama');
+        $agama->lk = $request->input('lk');
+        $agama->pr = $request->input('pr');
+
+        // Simpan ke database
+        if ($agama->save()) {
+            return back()->with('success', 'Data berhasil diperbarui!');
+        } else {
+            return back()->with('failed', 'Data gagal diperbarui!');
         }
     }
 }
