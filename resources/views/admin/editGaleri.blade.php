@@ -53,12 +53,12 @@
         <div class="col d-flex justify-content-center">
           <div class="card mt-4" style="width: 800px">
             <div class="card-body">
-              <h5 class="card-title text-center">Edit Berita</h5>
-              <form action="/postEditBerita/{{ $berita->id }}" method="POST" enctype="multipart/form-data">
+              <h5 class="card-title text-center">Edit Kegiatan</h5>
+              <form action="/postEditGaleri/{{ $galerikegiatan->id }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group mt-4">
                   <label class="text-secondary mb-2">Judul Berita</label>
-                  <input type="text" class="form-control border border-secondary form-control" name="judul" required value="{{ $berita->judul }}">
+                  <input type="text" class="form-control border border-secondary form-control" name="judul" required value="{{ $galerikegiatan->judul }}">
                   <span class="text-danger">
                     @error('judul')
                     {{ $message }}
@@ -68,7 +68,7 @@
 
                 <div class="form-group mt-1">
                     <label class="text-secondary mb-2">Slug</label>
-                    <input type="text" class="form-control border border-secondary form-control" name="slug" id="slug" value="{{ $berita->slug }}" readonly>
+                    <input type="text" class="form-control border border-secondary form-control" name="slug" id="slug" value="{{ $galerikegiatan->slug }}" readonly>
                     <span class="text-danger">
                         @error('slug')
                         {{ $message }}
@@ -78,7 +78,7 @@
 
                 <div class="form-group mt-1">
                   <label class="text-secondary mb-2">Tanggal</label>
-                  <input type="date" class="form-control border border-secondary form-control" name="tanggal" required value="{{ $berita->tanggal }}">
+                  <input type="date" class="form-control border border-secondary form-control" name="tanggal" required value="{{ $galerikegiatan->tanggal }}">
                   <span class="text-danger">
                     @error('tanggal')
                     {{ $message }}
@@ -88,7 +88,7 @@
 
                 <div class="form-group mt-1">
                   <label class="text-secondary mb-2">Tag</label>
-                  <input type="text" class="form-control border border-secondary form-control" name="tag" required value="{{ $berita->tag }}">
+                  <input type="text" class="form-control border border-secondary form-control" name="tag" required value="{{ $galerikegiatan->tag }}">
                   <span class="text-danger">
                     @error('tag')
                     {{ $message }}
@@ -97,10 +97,10 @@
                 </div><br>
 
                 <div class="form-group mt-1">
-                  <label class="text-secondary mb-2">Isi Berita</label>
-                  <textarea class="form-control border border-secondary form-control" name="berita" rows="5" required>{{ $berita->berita }}</textarea>
+                  <label class="text-secondary mb-2">Isi Kegiatan</label>
+                  <textarea class="form-control border border-secondary form-control" name="isi" rows="5" required>{{ $galerikegiatan->isi }}</textarea>
                   <span class="text-danger">
-                    @error('berita')
+                    @error('isi')
                     {{ $message }}
                     @enderror
                   </span>
@@ -117,7 +117,7 @@
                   </span>
                 </div>
 
-                <button type="submit" class="btn btn-success mt-5">Edit Berita</button>
+                <button type="submit" class="btn btn-success mt-5">Edit Kegiatan</button>
               </form>
             </div>
           </div>

@@ -28,8 +28,8 @@
           <ul>
             <li><a href="#beranda" class="active">Beranda</a></li>
             <li><a href="#about">Tentang</a></li>
-            <li><a href="#portfolio">Portfolio</a></li>
             <li><a href="#pemerintahan">Pemerintahan</a></li>
+            <li><a href="#faq">FAQ</a></li>
             <li><a href="#contact">Kontak</a></li>
           </ul>
           <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>

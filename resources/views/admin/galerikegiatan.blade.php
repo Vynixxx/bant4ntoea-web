@@ -34,8 +34,8 @@
   @include('/admin/header');
 
   <main id="main" class="main">
-  <!-- Modal Notifikasi -->
-  <div class="modal fade" id="notifModal" tabindex="-1" aria-labelledby="notifModalLabel" aria-hidden="true">
+    <!-- Modal Notifikasi -->
+    <div class="modal fade" id="notifModal" tabindex="-1" aria-labelledby="notifModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -64,7 +64,7 @@
     <section class="section">
       <div class="row">
           <div class="card-body">
-            <h5 class="card-title">Daftar Berita<a class="btn btn-white" href="{{ route('admin.tambahberita') }}" style="text-decoration: none;">+</a></h5>
+            <h5 class="card-title">Daftar Kegiatan<a class="btn btn-white" href="{{ route('admin.tambahgaleri') }}" style="text-decoration: none;">+</a></h5>
 
             <!-- Default Table -->
             <table class="table">
@@ -72,30 +72,30 @@
                 <tr>
                   <th scope="col">No.</th>
                   <th scope="col">Gambar</th>
-                  <th scope="col">Judul Berita</th>
-                  <th scope="col">Isi Berita</th>
+                  <th scope="col">Judul Kegiatan</th>
+                  <th scope="col">Isi Kegiatan</th>
                   <th scope="col">Tanggal</th>
                   <th scope="col">Tag</th>
                   <th scope="col">Aksi</th>
                 </tr>
               </thead>
               <tbody>
-              @foreach ($berita as $berita)
                 <tr>
+                @foreach ($galerikegiatan as $gk)
                   <th scope="row">{{ $loop->iteration }}</th>
                   <td>
-                    <img style="width: 150px" src="{{ asset('/images/' . $berita->gambar) }}" alt="foto berita">
+                    <img style="width: 150px" src="{{ asset('/images/' . $gk->gambar) }}" alt="foto kegiatan">
                   </td>
-                  <td>{{ $berita->judul }}</td>
-                  <td>{{ $berita->berita }}</td>
-                  <td>{{ $berita->tanggal }}</td>
-                  <td>{{ $berita->tag }}</td>
+                  <td>{{ $gk->judul }}</td>
+                  <td>{{ $gk->isi }}</td>
+                  <td>{{ $gk->tanggal }}</td>
+                  <td>{{ $gk->tag }}</td>
                   <td>
-                    <a class="btn btn-outline-warning" href="/admin/editBerita/{{ $berita->id }}">Edit</a>
-                    <a class="btn btn-outline-danger" href="/admin/deleteBerita/{{ $berita->id }}">Delete</a>
+                    <a class="btn btn-outline-warning" href="/admin/editGaleri/{{ $gk->id }}">Edit</a>
+                    <a class="btn btn-outline-danger" href="/admin/deleteGaleri/{{ $gk->id }}">Delete</a>
                   </td>
+                @endforeach
                 </tr>
-              @endforeach
               </tbody>
             </table>
             <!-- End Default Table Example -->

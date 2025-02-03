@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Galeri Desa Bantan Tua</title>
+  <title>Berita Desa Bantan Tua</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
 
@@ -46,30 +46,19 @@
                       <li class="breadcrumb-item">
                       <a href="{{ route('home') }}" class="text-decoration-none">Beranda</a>
                       </li>
-                      <li class="breadcrumb-item active" aria-current="page">Galeri Kegiatan</li>
+                      <li class="breadcrumb-item active" aria-current="page">Galeri Kegiatan | {{ $galerikegiatan->judul }}</li>
                   </ol>
                 </nav>
             </div>
         </div>
         <!-- End Breadcrumbs -->
-        <h2>Galeri Kegiatan</h2>
-      </div><!-- End Section Title -->
-      <div class="container">
+        <div class="container mt-4">
+            <h2>{{ $galerikegiatan->judul }}</h2>
+            <img src="{{ asset('/images/' . $galerikegiatan->gambar) }}" alt="Gambar galerikegiatan" style="width:100%; max-width:600px;">
+            <p class="mt-3">{{ $galerikegiatan->isi }}</p>
+            <small class="text-muted">Tanggal: {{ $galerikegiatan->tanggal }} | Tag: {{ $galerikegiatan->tag }}</small>
+        </div>
 
-      <div class="row gy-4">
-        @foreach ($galerikegiatan as $gk)
-          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="{{ $loop->iteration * 100 }}">
-            <div class="card-item border rounded-3 shadow-sm p-3">
-              <img src="{{ asset('/images/' . $gk->gambar) }}" alt="Gambar Kegiatan" style="width: 100%; height: 200px; object-fit: cover;" class="mb-2 rounded">
-              <h4><a href="{{ route('detailGaleri', ['slug' => $gk->slug]) }}" class="stretched-link text-decoration-none text-dark">{{ $gk->judul }}</a></h4>
-              <p>{{ Str::limit($gk->isi, 100, '...') }}</p>
-              <small class="text-muted">{{ $gk->tanggal }} | {{ $gk->tag }}</small>
-            </div>
-          </div>
-        @endforeach
-      </div>
-
-      </div>
 
     </section><!-- /Why Us Section -->
 

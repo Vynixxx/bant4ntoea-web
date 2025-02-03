@@ -6,11 +6,13 @@ use Illuminate\Http\Request;
 use App\Models\kontak;
 use App\Models\berita;
 use App\Models\agenda;
+use App\Models\galerikegiatan;
 
 class pageController extends Controller
 {
     public function kontak(Request $kontak)
     {
+        
         // Validasi input
         $kontak->validate([
             'name' => 'required|string|max:255',
@@ -45,4 +47,9 @@ class pageController extends Controller
         return view('publikasi.detailagenda', compact('agenda'));
     }
 
+    public function detailGaleri($slug)
+    {
+        $galerikegiatan = galerikegiatan::where('slug', $slug)->firstOrFail();
+        return view('publikasi.detailgaleri', compact('galerikegiatan'));
+    }
 }

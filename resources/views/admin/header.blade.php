@@ -84,6 +84,13 @@
   </li>
 
   <li class="nav-item">
+    <a class="nav-link collapsed" href="{{ route('admin.galerikegiatan') }}">
+      <i class="bi bi-journal-plus"></i>
+      <span>Kegiatan</span>
+    </a>
+  </li>
+
+  <li class="nav-item">
     <a class="nav-link collapsed" href="{{ route('admin.kp') }}">
       <i class="bi bi-person"></i>
       <span>Kepegawaian</span>

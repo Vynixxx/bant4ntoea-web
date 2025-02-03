@@ -60,8 +60,8 @@
           <ul>
             <li><a href="{{ route('home') }}">Beranda</a></li>
             <li><a href="{{ route('desa') }}">Tentang</a></li>
-            <li><a href="#portfolio">Portfolio</a></li>
             <li><a href="{{ route('sdm') }}">Pemerintahan</a></li>
+            <li><a href="{{ route('sdm') }}">FAQ</a></li>
             <li><a href="{{ route('kontak') }}" class="active">Kontak</a></li>
           </ul>
           <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>

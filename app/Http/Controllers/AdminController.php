@@ -8,7 +8,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\agenda;
 use App\Models\berita;
+use App\Models\galerikegiatan;
 use App\Models\kontak;
+use App\Models\penduduk;
 use Illuminate\Support\Str;
 
 
@@ -33,14 +35,29 @@ class AdminController extends Controller
         }
 
         public function dashboard(){
+        $jumlahPenduduk = penduduk::where('key', 'jumlah_penduduk')->value('value');
+        $jumlahAgenda = agenda::count();
+        $jumlahKontak = kontak::count();
+        $berita = berita::orderBy('created_at', 'DESC')->limit(5)->get();
         if(Auth::check()&& Auth::user()->role === 'admin'){
-            return view('admin.dashboard');
+            return view('admin.dashboard', compact('jumlahPenduduk', 'jumlahAgenda', 'jumlahKontak', 'berita'));
         }
 
         return redirect('/');
            
         }
 
+        public function updateJumlahPenduduk(Request $request)
+        {
+            $request->validate([
+                'jumlah' => 'required|integer|min:0',
+            ]);
+
+            // Update jumlah penduduk di tabel settings
+            penduduk::where('key', 'jumlah_penduduk')->update(['value' => $request->jumlah]);
+
+            return response()->json(['success' => true]);
+        }
 
         // Proses login
         public function postLogin(Request $request){
@@ -76,6 +93,10 @@ class AdminController extends Controller
     {
         return view('admin.tambahberita');
     }
+    public function tambahgaleri()
+    {
+        return view('admin.tambahgaleri');
+    }
     public function tambahpegawai()
     {
         return view('admin.tambahpegawai');
@@ -98,6 +119,12 @@ class AdminController extends Controller
         return view('admin.berita', compact('berita'));
     }
 
+    public function admingalerikegiatan()
+    {
+        $galerikegiatan = galerikegiatan::get();
+        return view('admin.galerikegiatan', compact('galerikegiatan'));
+    }
+
     public function adminPengaduan()
     {
         $kontak = kontak::get();
@@ -116,7 +143,7 @@ class AdminController extends Controller
         // Validasi input
         $agenda->validate([
             'judul' => 'required|string|max:255',
-            'slug' => 'unique:berita,slug',
+            'slug' => 'unique:agenda,slug',
             'tanggal' => 'required|date',
             'keterangan' => 'required|string',
         ]);
@@ -173,6 +200,41 @@ class AdminController extends Controller
         }
     }
     
+    public function galeri(Request $request)
+    {
+        // Validasi input
+        $request->validate([
+            'judul' => 'required|string|max:255',
+            'slug' => 'unique:galerikegiatan,slug',
+            'isi' => 'required|string',
+            'gambar' => 'required|image|max:5120', // Maksimal ukuran 5MB
+            'tanggal' => 'required|date',
+            'tag' => 'required|string',
+        ]);
+    
+        // Menyimpan berita ke database
+        $galerikegiatan = new galerikegiatan;
+        $galerikegiatan->judul = $request->input('judul');
+        $galerikegiatan->slug = $request->input('slug');
+        $galerikegiatan->isi = $request->input('isi');
+        $galerikegiatan->tanggal = $request->input('tanggal');
+        $galerikegiatan->tag = $request->input('tag');
+    
+        // Proses penyimpanan gambar
+        if ($request->hasFile('gambar')) {
+            $file = $request->file('gambar');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('images'), $filename);
+            $galerikegiatan->gambar = $filename;
+        }
+    
+        // Simpan ke database
+        if ($galerikegiatan->save()) {
+            return redirect()->route('admin.tambahgaleri')->with('success', 'Kegiatan berhasil ditambahkan!');
+        } else {
+            return redirect()->route('admin.tambahgaleri')->with('failed', 'Gagal menambahkan kegiatan.');
+        }
+    }
 
     //edit
     public function editAgenda($id)
@@ -266,6 +328,62 @@ class AdminController extends Controller
         }
     }
 
+    public function editGaleri($id)
+    {
+        $galerikegiatan = galerikegiatan::find($id);
+        return view('admin.editGaleri', compact('galerikegiatan'));
+    }
+    public function postEditGaleri(Request $request, $id)
+    {
+        // Validasi input
+        $request->validate([
+            'judul' => 'required|string|max:255',
+            'slug' => 'unique:galerikegiatan,slug,' . $id, // Menambahkan pengecualian untuk slug yang sedang diedit
+            'isi' => 'required|string',
+            'gambar' => 'nullable|image|max:5120', // Gambar opsional saat edit
+            'tanggal' => 'required|date',
+            'tag' => 'required|string',
+        ]);
+        
+        // Menemukan galerikegiatan berdasarkan ID
+        $galerikegiatan = galerikegiatan::find($id);
+        if (!$galerikegiatan) {
+            return redirect()->route('admin.tambahgaleri')->with('failed', 'Kegiatan tidak ditemukan.');
+        }
+
+        // Update data galerikegiatan
+        $galerikegiatan->judul = $request->input('judul');
+        
+        // Mengupdate slug otomatis berdasarkan judul
+        $slug = Str::slug($request->input('judul')); // Menggunakan helper Str untuk generate slug
+        $galerikegiatan->slug = $slug;
+
+        $galerikegiatan->isi = $request->input('isi');
+        $galerikegiatan->tanggal = $request->input('tanggal');
+        $galerikegiatan->tag = $request->input('tag');
+
+        // Proses penyimpanan gambar jika ada gambar baru
+        if ($request->hasFile('gambar')) {
+            // Menghapus gambar lama jika ada
+            if ($galerikegiatan->gambar && file_exists(public_path('images/' . $galerikegiatan->gambar))) {
+                unlink(public_path('images/' . $galerikegiatan->gambar));
+            }
+
+            // Menyimpan gambar baru
+            $file = $request->file('gambar');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('images'), $filename);
+            $galerikegiatan->gambar = $filename;
+        }
+
+        // Simpan ke database
+        if ($galerikegiatan->save()) {
+            return back()->with('success', 'Kegiatan berhasil diupdate!');
+        } else {
+            return back()->with('failed', 'Kegiatan gagal diupdate!');
+        }
+    }
+
 
     //selengkapnya
     public function bacaAduan($id)
@@ -306,6 +424,17 @@ class AdminController extends Controller
             return back()->with('success', 'Berita berhasil dihapus!');
         } else {
             return back()->with('failed', 'Gagal menghapus berita!');
+        }
+    }
+    public function deleteGaleri($id)
+    {
+        $galerikegiatan = galerikegiatan::find($id);
+
+        $galerikegiatan->delete();
+        if ($galerikegiatan) {
+            return back()->with('success', 'Kegiatan berhasil dihapus!');
+        } else {
+            return back()->with('failed', 'Gagal menghapus kegiatan!');
         }
     }
 }
