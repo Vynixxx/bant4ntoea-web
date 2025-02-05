@@ -117,7 +117,7 @@
                   </span>
                 </div>
 
-                <button type="submit" class="btn btn-success mt-5">Edit Berita</button>
+                <button type="submit" class="btn btn-success mt-5">Edit Data</button>
               </form>
             </div>
           </div>

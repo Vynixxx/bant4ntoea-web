@@ -53,32 +53,23 @@
                     <div class="col d-flex justify-content-center">
                         <div class="card mt-4" style="width: 800px">
                             <div class="card-body">
-                                <h5 class="card-title text-center">Edit Agenda</h5>
-                                <form action="/postEditAgenda/{{ $agenda->id }}" method="POST">
+                                <h5 class="card-title text-center">Edit Kepala Keluarga</h5>
+                                <form action="/postEditkk/{{ $kk->id }}" method="POST">
                                     @csrf
                                     <div class="form-group mt-4">
-                                        <label class="text-secondary mb-2">Judul Agenda</label>
-                                        <input type="text" class="form-control border border-secondary form-control" name="judul" required value="{{ $agenda -> judul }}">
+                                        <label class="text-secondary mb-2">Kriteria</label>
+                                        <input type="text" class="form-control border border-secondary form-control" name="nama" required value="{{ $kk -> nama }}">
                                         <span class="text-danger">
-                                            @error('judul')
+                                            @error('nama')
                                               {{ $message }}
                                             @enderror
                                         </span>
                                     </div><br>
                                     <div class="form-group mt-1">
-                                        <label class="text-secondary mb-2">Tanggal</label>
-                                        <input type="date" class="form-control border border-secondary form-control" name="tanggal" required value="{{ $agenda -> tanggal }}">
+                                        <label class="text-secondary mb-2">Jumlah Keluarga</label>
+                                        <input type="number" class="form-control border border-secondary form-control" name="jml" required value="{{ $kk -> jml }}">
                                         <span class="text-danger">
-                                            @error('tanggal')
-                                              {{ $message }}
-                                            @enderror
-                                        </span>
-                                    </div><br>
-                                    <div class="form-group mt-1">
-                                        <label class="text-secondary mb-2">Keterangan</label>
-                                        <input type="text" class="form-control border border-secondary form-control" name="keterangan" required value="{{ $agenda -> keterangan }}">
-                                        <span class="text-danger">
-                                            @error('keterangan')
+                                            @error('jml')
                                               {{ $message }}
                                             @enderror
                                         </span>

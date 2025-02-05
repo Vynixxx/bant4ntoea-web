@@ -53,32 +53,33 @@
                     <div class="col d-flex justify-content-center">
                         <div class="card mt-4" style="width: 800px">
                             <div class="card-body">
-                                <h5 class="card-title text-center">Edit Agenda</h5>
-                                <form action="/postEditAgenda/{{ $agenda->id }}" method="POST">
+                                <h5 class="card-title text-center">Edit Piramida Penduduk</h5>
+                                <form action="/postEditpp/{{ $pp->id }}" method="POST">
                                     @csrf
                                     <div class="form-group mt-4">
-                                        <label class="text-secondary mb-2">Judul Agenda</label>
-                                        <input type="text" class="form-control border border-secondary form-control" name="judul" required value="{{ $agenda -> judul }}">
+                                        <label class="text-secondary mb-2">Usia</label>
+                                        <input type="text" class="form-control border border-secondary form-control" name="usia" required value="{{ $pp -> usia }}">
+                                        <div class="form-text">Harap memasukkan angka 0 - 9 saja (Tidak perlu menuliskan Tahun)
                                         <span class="text-danger">
-                                            @error('judul')
+                                            @error('usia')
                                               {{ $message }}
                                             @enderror
                                         </span>
                                     </div><br>
                                     <div class="form-group mt-1">
-                                        <label class="text-secondary mb-2">Tanggal</label>
-                                        <input type="date" class="form-control border border-secondary form-control" name="tanggal" required value="{{ $agenda -> tanggal }}">
+                                        <label class="text-secondary mb-2">Laki-laki</label>
+                                        <input type="number" class="form-control border border-secondary form-control" name="lk" required value="{{ $pp -> lk }}">
                                         <span class="text-danger">
-                                            @error('tanggal')
+                                            @error('lk')
                                               {{ $message }}
                                             @enderror
                                         </span>
-                                    </div><br>
+                                    </div>
                                     <div class="form-group mt-1">
-                                        <label class="text-secondary mb-2">Keterangan</label>
-                                        <input type="text" class="form-control border border-secondary form-control" name="keterangan" required value="{{ $agenda -> keterangan }}">
+                                        <label class="text-secondary mb-2">Perempuan</label>
+                                        <input type="number" class="form-control border border-secondary form-control" name="pr" required value="{{ $pp -> pr }}">
                                         <span class="text-danger">
-                                            @error('keterangan')
+                                            @error('pr')
                                               {{ $message }}
                                             @enderror
                                         </span>

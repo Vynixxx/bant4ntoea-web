@@ -53,37 +53,38 @@
                     <div class="col d-flex justify-content-center">
                         <div class="card mt-4" style="width: 800px">
                             <div class="card-body">
-                                <h5 class="card-title text-center">Edit Agenda</h5>
-                                <form action="/postEditAgenda/{{ $agenda->id }}" method="POST">
+                              <div href="{{ route('admin.agenda') }}" >
+                                <h5 class="card-title text-center">Tambah Penerima Program Keluarga Harapan</h5>
+                                <form action="{{ route('postTambahpkh') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-group mt-4">
-                                        <label class="text-secondary mb-2">Judul Agenda</label>
-                                        <input type="text" class="form-control border border-secondary form-control" name="judul" required value="{{ $agenda -> judul }}">
+                                        <label class="text-secondary mb-2">Kriteria</label>
+                                        <input class="form-control border border-secondary form-control" name="nama" required value="{{ old('nama') }}" type="text">
                                         <span class="text-danger">
-                                            @error('judul')
+                                            @error('nama')
                                               {{ $message }}
                                             @enderror
                                         </span>
                                     </div><br>
                                     <div class="form-group mt-1">
-                                        <label class="text-secondary mb-2">Tanggal</label>
-                                        <input type="date" class="form-control border border-secondary form-control" name="tanggal" required value="{{ $agenda -> tanggal }}">
+                                        <label class="text-secondary mb-2">Menerima Program</label>
+                                        <input type="number" class="form-control border border-secondary form-control" name="acc" required value="{{ old('acc') }}">
                                         <span class="text-danger">
-                                            @error('tanggal')
-                                              {{ $message }}
+                                            @error('acc')
+                                            {{ $message }}
                                             @enderror
                                         </span>
                                     </div><br>
                                     <div class="form-group mt-1">
-                                        <label class="text-secondary mb-2">Keterangan</label>
-                                        <input type="text" class="form-control border border-secondary form-control" name="keterangan" required value="{{ $agenda -> keterangan }}">
+                                        <label class="text-secondary mb-2">Jumlah Keluarga Penerima</label>
+                                        <input type="number" class="form-control border border-secondary form-control" name="jmlkp" required value="{{ old('jmlkp') }}">
                                         <span class="text-danger">
-                                            @error('keterangan')
-                                              {{ $message }}
+                                            @error('jmlkp')
+                                            {{ $message }}
                                             @enderror
                                         </span>
                                     </div>
-                                    <button type="submit" class="btn btn-success mt-5">Edit Data</button>
+                                    <button type="submit" class="btn btn-success mt-5">Tambah Data</button>
                                 </form>
                             </div>
                         </div>

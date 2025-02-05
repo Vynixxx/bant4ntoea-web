@@ -131,7 +131,7 @@
                                               {{ $message }}
                                             @enderror
                                         </span>
-                                    </div><br>
+                                    </div>
                                     <button type="submit" class="btn btn-success mt-5">Tambah Data</button>
                                 </form>
                             </div>

@@ -72,14 +72,14 @@
           </tr>
         </thead>
         <tbody>
+        @foreach ( $agama as $agama )
           <tr>
-            @foreach ( $agama as $agama )
             <td>{{ $loop->iteration }}</td>
             <td>{{ $agama->nama }}</td>
             <td>{{ $agama->lk }}</td>
             <td>{{ $agama->pr }}</td>
           </tr>
-          @endforeach
+        @endforeach
         </tbody>
       </table>
     </div>
@@ -90,22 +90,19 @@
       <table class="table table-striped table-bordered" data-aos="fade-up">
         <thead class="table-dark">
           <tr>
-            <th>#</th>
-            <th>Nama</th>
-            <th>Jumlah Bantuan</th>
+            <th>No.</th>
+            <th>Jenis Penerima</th>
+            <th>Jumlah Penerima</th>
           </tr>
         </thead>
         <tbody>
+        @foreach ( $bsk as $bsk )
           <tr>
-            <td>1</td>
-            <td>Andi</td>
-            <td>Rp1.000.000</td>
+            <td>{{ $loop->iteration }}</td>
+            <td>{{ $bsk->nama }}</td>
+            <td>{{ $bsk->jml }}</td>
           </tr>
-          <tr>
-            <td>2</td>
-            <td>Siti</td>
-            <td>Rp1.200.000</td>
-          </tr>
+        @endforeach
         </tbody>
       </table>
     </div>
@@ -116,22 +113,19 @@
       <table class="table table-striped table-bordered" data-aos="fade-up">
         <thead class="table-dark">
           <tr>
-            <th>#</th>
-            <th>Negara</th>
-            <th>Jumlah</th>
+            <th>No.</th>
+            <th>Jenis Migran</th>
+            <th>Jumlah Migran</th>
           </tr>
         </thead>
         <tbody>
+        @foreach ( $buruh as $buruh )
           <tr>
-            <td>1</td>
-            <td>Malaysia</td>
-            <td>300</td>
+            <td>{{ $loop->iteration }}</td>
+            <td>{{ $buruh->nama }}</td>
+            <td>{{ $buruh->jml }}</td>
           </tr>
-          <tr>
-            <td>2</td>
-            <td>Arab Saudi</td>
-            <td>150</td>
-          </tr>
+        @endforeach
         </tbody>
       </table>
     </div>
@@ -142,22 +136,21 @@
       <table class="table table-striped table-bordered" data-aos="fade-up">
         <thead class="table-dark">
           <tr>
-            <th>#</th>
-            <th>Kecamatan</th>
-            <th>Jumlah Kasus</th>
+            <th>No.</th>
+            <th>Usia</th>
+            <th>Laki-laki</th>
+            <th>Perempuan</th>
           </tr>
         </thead>
         <tbody>
+        @foreach ( $gb as $gb )
           <tr>
-            <td>1</td>
-            <td>Kecamatan A</td>
-            <td>50</td>
+            <td>{{ $loop->iteration }}</td>
+            <td>{{ $gb->usia }}</td>
+            <td>{{ $gb->lk }}</td>
+            <td>{{ $gb->pr }}</td>
           </tr>
-          <tr>
-            <td>2</td>
-            <td>Kecamatan B</td>
-            <td>30</td>
-          </tr>
+        @endforeach
         </tbody>
       </table>
     </div>
@@ -167,22 +160,21 @@
       <table class="table table-striped table-bordered" data-aos="fade-up">
         <thead class="table-dark">
           <tr>
-            <th>#</th>
-            <th>Kecamatan</th>
-            <th>Jumlah Kasus</th>
+            <th>No.</th>
+            <th>Nama</th>
+            <th>Laki-laki</th>
+            <th>Perempuan</th>
           </tr>
         </thead>
         <tbody>
+        @foreach ( $gd as $gd )
           <tr>
-            <td>1</td>
-            <td>Kecamatan A</td>
-            <td>50</td>
+            <td>{{ $loop->iteration }}</td>
+            <td>{{ $gd->usia }}</td>
+            <td>{{ $gd->lk }}</td>
+            <td>{{ $gd->pr }}</td>
           </tr>
-          <tr>
-            <td>2</td>
-            <td>Kecamatan B</td>
-            <td>30</td>
-          </tr>
+        @endforeach
         </tbody>
       </table>
     </div>
@@ -192,22 +184,21 @@
       <table class="table table-striped table-bordered" data-aos="fade-up">
         <thead class="table-dark">
           <tr>
-            <th>#</th>
-            <th>Kecamatan</th>
-            <th>Jumlah Kasus</th>
+            <th>No.</th>
+            <th>Kriteria</th>
+            <th>Menerima Jamkesmas</th>
+            <th>Jumlah Keluarga Penerima</th>
           </tr>
         </thead>
         <tbody>
+        @foreach ( $jamkes as $jamkes )
           <tr>
-            <td>1</td>
-            <td>Kecamatan A</td>
-            <td>50</td>
+            <td>{{ $loop->iteration }}</td>
+            <td>{{ $jamkes->nama }}</td>
+            <td>{{ $jamkes->acc }}</td>
+            <td>{{ $jamkes->jmlkp }}</td>
           </tr>
-          <tr>
-            <td>2</td>
-            <td>Kecamatan B</td>
-            <td>30</td>
-          </tr>
+        @endforeach
         </tbody>
       </table>
     </div>
@@ -217,22 +208,20 @@
       <table class="table table-striped table-bordered" data-aos="fade-up">
         <thead class="table-dark">
           <tr>
-            <th>#</th>
-            <th>Kecamatan</th>
-            <th>Jumlah Kasus</th>
+            <th>No.</th>
+            <th>Kriteria</th>
+            <th>Jumlah Keluarga</th>
           </tr>
         </thead>
         <tbody>
+        @foreach ( $kesos as $kesos )
           <tr>
-            <td>1</td>
-            <td>Kecamatan A</td>
-            <td>50</td>
+            <td>{{ $loop->iteration }}</td>
+            <td>{{ $kesos->nama }}</td>
+            <td>{{ $kesos->acc }}</td>
+            <td>{{ $kesos->jmlkp }}</td>
           </tr>
-          <tr>
-            <td>2</td>
-            <td>Kecamatan B</td>
-            <td>30</td>
-          </tr>
+        @endforeach
         </tbody>
       </table>
     </div>
@@ -242,22 +231,19 @@
       <table class="table table-striped table-bordered" data-aos="fade-up">
         <thead class="table-dark">
           <tr>
-            <th>#</th>
-            <th>Kecamatan</th>
-            <th>Jumlah Kasus</th>
+            <th>No.</th>
+            <th>Kriteria</th>
+            <th>Jumlah Keluarga</th>
           </tr>
         </thead>
         <tbody>
+        @foreach ( $kk as $kk )
           <tr>
-            <td>1</td>
-            <td>Kecamatan A</td>
-            <td>50</td>
+            <td>{{ $loop->iteration }}</td>
+            <td>{{ $kk->nama }}</td>
+            <td>{{ $kk->jml }}</td>
           </tr>
-          <tr>
-            <td>2</td>
-            <td>Kecamatan B</td>
-            <td>30</td>
-          </tr>
+        @endforeach
         </tbody>
       </table>
     </div>
@@ -267,22 +253,19 @@
       <table class="table table-striped table-bordered" data-aos="fade-up">
         <thead class="table-dark">
           <tr>
-            <th>#</th>
-            <th>Kecamatan</th>
-            <th>Jumlah Kasus</th>
+            <th>No.</th>
+            <th>Kriteria</th>
+            <th>Jumlah Kehamilan</th>
           </tr>
         </thead>
         <tbody>
+        @foreach ( $kehamilan as $kehamilan )
           <tr>
-            <td>1</td>
-            <td>Kecamatan A</td>
-            <td>50</td>
+            <td>{{ $loop->iteration }}</td>
+            <td>{{ $kehamilan->nama }}</td>
+            <td>{{ $kehamilan->jml }}</td>
           </tr>
-          <tr>
-            <td>2</td>
-            <td>Kecamatan B</td>
-            <td>30</td>
-          </tr>
+        @endforeach
         </tbody>
       </table>
     </div>
@@ -292,22 +275,21 @@
       <table class="table table-striped table-bordered" data-aos="fade-up">
         <thead class="table-dark">
           <tr>
-            <th>#</th>
-            <th>Kecamatan</th>
-            <th>Jumlah Kasus</th>
+            <th>No.</th>
+            <th>Kriteria</th>
+            <th>Laki-laki</th>
+            <th>Perempuan</th>
           </tr>
         </thead>
         <tbody>
+        @foreach ( $pekerjaan as $pekerjaan )
           <tr>
-            <td>1</td>
-            <td>Kecamatan A</td>
-            <td>50</td>
+            <td>{{ $loop->iteration }}</td>
+            <td>{{ $pekerjaan->nama }}</td>
+            <td>{{ $pekerjaan->lk }}</td>
+            <td>{{ $pekerjaan->pr }}</td>
           </tr>
-          <tr>
-            <td>2</td>
-            <td>Kecamatan B</td>
-            <td>30</td>
-          </tr>
+        @endforeach
         </tbody>
       </table>
     </div>
@@ -317,22 +299,21 @@
       <table class="table table-striped table-bordered" data-aos="fade-up">
         <thead class="table-dark">
           <tr>
-            <th>#</th>
-            <th>Kecamatan</th>
-            <th>Jumlah Kasus</th>
+            <th>No.</th>
+            <th>Kriteria</th>
+            <th>Laki-laki</th>
+            <th>Perempuan</th>
           </tr>
         </thead>
         <tbody>
+        @foreach ( $pendidikan as $pendidikan )
           <tr>
-            <td>1</td>
-            <td>Kecamatan A</td>
-            <td>50</td>
+            <td>{{ $loop->iteration }}</td>
+            <td>{{ $pendidikan->nama }}</td>
+            <td>{{ $pendidikan->lk }}</td>
+            <td>{{ $pendidikan->pr }}</td>
           </tr>
-          <tr>
-            <td>2</td>
-            <td>Kecamatan B</td>
-            <td>30</td>
-          </tr>
+        @endforeach
         </tbody>
       </table>
     </div>
@@ -342,22 +323,21 @@
       <table class="table table-striped table-bordered" data-aos="fade-up">
         <thead class="table-dark">
           <tr>
-            <th>#</th>
-            <th>Kecamatan</th>
-            <th>Jumlah Kasus</th>
+            <th>No.</th>
+            <th>Kelompok Usia</th>
+            <th>Laki-laki</th>
+            <th>Perempuan</th>
           </tr>
         </thead>
         <tbody>
+        @foreach ( $pp as $pp )
           <tr>
-            <td>1</td>
-            <td>Kecamatan A</td>
-            <td>50</td>
+            <td>{{ $loop->iteration }}</td>
+            <td>{{ $pp->usia }}</td>
+            <td>{{ $pp->lk }}</td>
+            <td>{{ $pp->pr }}</td>
           </tr>
-          <tr>
-            <td>2</td>
-            <td>Kecamatan B</td>
-            <td>30</td>
-          </tr>
+        @endforeach
         </tbody>
       </table>
     </div>
@@ -367,22 +347,21 @@
       <table class="table table-striped table-bordered" data-aos="fade-up">
         <thead class="table-dark">
           <tr>
-            <th>#</th>
-            <th>Kecamatan</th>
-            <th>Jumlah Kasus</th>
+            <th>No.</th>
+            <th>Kriteria</th>
+            <th>Menerima Program</th>
+            <th>Jumlah Keluarga Penerima</th>
           </tr>
         </thead>
         <tbody>
+        @foreach ( $pkh as $pkh )
           <tr>
-            <td>1</td>
-            <td>Kecamatan A</td>
-            <td>50</td>
+            <td>{{ $loop->iteration }}</td>
+            <td>{{ $pkh->usia }}</td>
+            <td>{{ $pkh->acc }}</td>
+            <td>{{ $pkh->jmlkp }}</td>
           </tr>
-          <tr>
-            <td>2</td>
-            <td>Kecamatan B</td>
-            <td>30</td>
-          </tr>
+        @endforeach
         </tbody>
       </table>
     </div>
@@ -392,22 +371,19 @@
       <table class="table table-striped table-bordered" data-aos="fade-up">
         <thead class="table-dark">
           <tr>
-            <th>#</th>
-            <th>Kecamatan</th>
-            <th>Jumlah Kasus</th>
+            <th>No.</th>
+            <th>Kriteria</th>
+            <th>Jumlah Keluarga</th>
           </tr>
         </thead>
         <tbody>
+        @foreach ( $raskin as $raskin )
           <tr>
-            <td>1</td>
-            <td>Kecamatan A</td>
-            <td>50</td>
+            <td>{{ $loop->iteration }}</td>
+            <td>{{ $raskin->nama }}</td>
+            <td>{{ $raskin->jml }}</td>
           </tr>
-          <tr>
-            <td>2</td>
-            <td>Kecamatan B</td>
-            <td>30</td>
-          </tr>
+        @endforeach
         </tbody>
       </table>
     </div>
@@ -417,22 +393,21 @@
       <table class="table table-striped table-bordered" data-aos="fade-up">
         <thead class="table-dark">
           <tr>
-            <th>#</th>
-            <th>Kecamatan</th>
-            <th>Jumlah Kasus</th>
+            <th>No.</th>
+            <th>Kriteria</th>
+            <th>Laki-laki</th>
+            <th>Perempuan</th>
           </tr>
         </thead>
         <tbody>
+        @foreach ( $sk as $sk )
           <tr>
-            <td>1</td>
-            <td>Kecamatan A</td>
-            <td>50</td>
+            <td>{{ $loop->iteration }}</td>
+            <td>{{ $sk->nama }}</td>
+            <td>{{ $sk->lk }}</td>
+            <td>{{ $sk->pr }}</td>
           </tr>
-          <tr>
-            <td>2</td>
-            <td>Kecamatan B</td>
-            <td>30</td>
-          </tr>
+        @endforeach
         </tbody>
       </table>
     </div>

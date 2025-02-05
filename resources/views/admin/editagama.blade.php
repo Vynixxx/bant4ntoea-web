@@ -83,7 +83,7 @@
                                             @enderror
                                         </span>
                                     </div>
-                                    <button type="submit" class="btn btn-success mt-5">Edit Agama</button>
+                                    <button type="submit" class="btn btn-success mt-5">Edit Data</button>
                                 </form>
                             </div>
                         </div>

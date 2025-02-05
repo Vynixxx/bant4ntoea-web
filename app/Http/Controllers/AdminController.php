@@ -16,7 +16,20 @@ use Illuminate\Support\Str;
 
 //statistic
 use App\Models\agama;
-
+use App\Models\bsk;
+use App\Models\buruh;
+use App\Models\gb;
+use App\Models\gd;
+use App\Models\jamkes;
+use App\Models\kesos;
+use App\Models\kk;
+use App\Models\kehamilan;
+use App\Models\pekerjaan;
+use App\Models\pendidikan;
+use App\Models\pp;
+use App\Models\pkh;
+use App\Models\raskin;
+use App\Models\sk;
 
 
 class AdminController extends Controller
@@ -551,12 +564,26 @@ class AdminController extends Controller
     }
 
     //statistic
-    //agama
     public function adminstatsdesa()
     {
         $agama = agama::get();
-        return view('admin.statsdesa', compact('agama'));
+        $bsk = bsk::get();
+        $buruh = buruh::get();
+        $gb = gb::get();
+        $gd = gd::get();
+        $jamkes = jamkes::get();
+        $kesos = kesos::get();
+        $kk = kk::get();
+        $kehamilan = kehamilan::get();
+        $pekerjaan = pekerjaan::get();
+        $pendidikan = pendidikan::get();
+        $pp = pp::get();
+        $pkh = pkh::get();
+        $raskin = raskin::get();
+        $sk = sk::get();
+        return view('admin.statsdesa', compact('agama', 'bsk', 'buruh', 'gb', 'gd', 'jamkes', 'kesos', 'kk', 'kehamilan', 'pekerjaan', 'pendidikan', 'pp', 'pkh', 'raskin', 'sk'));
     }
+    //agama
     public function agama(Request $agama)
     {
         // Validasi input
@@ -604,7 +631,7 @@ class AdminController extends Controller
         // Menemukan data agama berdasarkan ID
         $agama = agama::find($id);
         if (!$agama) {
-            return redirect()->route('admin.tambahpegawai')->with('failed', 'Pegawai tidak ditemukan.');
+            return redirect()->route('admin.tambahagama')->with('failed', 'Data tidak ditemukan.');
         }
 
         // Update data agama
@@ -619,4 +646,1027 @@ class AdminController extends Controller
             return back()->with('failed', 'Data gagal diperbarui!');
         }
     }
+    public function deleteagama($id)
+    {
+        $agama = agama::find($id);
+        $agama->delete();
+        if ($agama) {
+            return back()->with('success', 'Data berhasil dihapus!');
+        } else {
+            return back()->with('failed', 'Gagal menghapus Data!');
+        }
+    }
+
+    //bantuan siswa miskin
+    public function bsk(Request $bsk)
+    {
+        // Validasi input
+        $bsk->validate([
+            'nama' => 'required|string|max:255',
+            'jml' => 'required|string',
+        ]);
+
+        // Simpan ke database
+        bsk::create([
+            'nama' => $bsk->nama,
+            'jml' => $bsk->jml,
+        ]);
+
+        // Cek apakah berhasil disimpan
+        if ($bsk) {
+            return redirect()->route('admin.tambahbsk')->with('success', 'Data berhasil ditambahkan!');
+        } else {
+            return redirect()->route('admin.tambahbsk')->with('failed', 'Gagal menambahkan Data.');
+        }
+    }
+    public function tambahbsk()
+    {
+        return view('admin.tambahbsk');
+    }
+    public function editbsk($id)
+    {
+        $bsk = bsk::find($id);
+        if (!$bsk) {
+            return redirect()->route('admin.tambahbsk')->with('failed', 'Data tidak ditemukan.');
+        }
+        return view('admin.editbsk', compact('bsk'));
+    }
+
+    public function postEditbsk(Request $request, $id)
+    {
+        $request->validate([
+            'nama' => 'required|string|max:255',
+            'jml' => 'required|string',
+        ]);
+
+        // Menemukan data bsk berdasarkan ID
+        $bsk = bsk::find($id);
+        if (!$bsk) {
+            return redirect()->route('admin.tambahbsk')->with('failed', 'Data tidak ditemukan.');
+        }
+
+        // Update data bsk
+        $bsk->nama = $request->input('nama');
+        $bsk->jml = $request->input('jml');
+
+        // Simpan ke database
+        if ($bsk->save()) {
+            return back()->with('success', 'Data berhasil diperbarui!');
+        } else {
+            return back()->with('failed', 'Data gagal diperbarui!');
+        }
+    }
+    public function deletebsk($id)
+    {
+        $bsk = bsk::find($id);
+        $bsk->delete();
+        if ($bsk) {
+            return back()->with('success', 'Data berhasil dihapus!');
+        } else {
+            return back()->with('failed', 'Gagal menghapus Data!');
+        }
+    }
+    
+    //booruh
+    public function buruh(Request $buruh)
+    {
+        // Validasi input
+        $buruh->validate([
+            'nama' => 'required|string|max:255',
+            'jml' => 'required|string',
+        ]);
+
+        // Simpan ke database
+        buruh::create([
+            'nama' => $buruh->nama,
+            'jml' => $buruh->jml,
+        ]);
+
+        // Cek apakah berhasil disimpan
+        if ($buruh) {
+            return redirect()->route('admin.tambahburuh')->with('success', 'Data berhasil ditambahkan!');
+        } else {
+            return redirect()->route('admin.tambahburuh')->with('failed', 'Gagal menambahkan Data.');
+        }
+    }
+    public function tambahburuh()
+    {
+        return view('admin.tambahburuh');
+    }
+    public function editburuh($id)
+    {
+        $buruh = buruh::find($id);
+        if (!$buruh) {
+            return redirect()->route('admin.tambahburuh')->with('failed', 'Data tidak ditemukan.');
+        }
+        return view('admin.editburuh', compact('buruh'));
+    }
+
+    public function postEditburuh(Request $request, $id)
+    {
+        $request->validate([
+            'nama' => 'required|string|max:255',
+            'jml' => 'required|string',
+        ]);
+
+        // Menemukan data buruh berdasarkan ID
+        $buruh = buruh::find($id);
+        if (!$buruh) {
+            return redirect()->route('admin.tambahburuh')->with('failed', 'Data tidak ditemukan.');
+        }
+
+        // Update data buruh
+        $buruh->nama = $request->input('nama');
+        $buruh->jml = $request->input('jml');
+
+        // Simpan ke database
+        if ($buruh->save()) {
+            return back()->with('success', 'Data berhasil diperbarui!');
+        } else {
+            return back()->with('failed', 'Data gagal diperbarui!');
+        }
+    }
+    public function deleteburuh($id)
+    {
+        $buruh = buruh::find($id);
+        $buruh->delete();
+        if ($buruh) {
+            return back()->with('success', 'Data berhasil dihapus!');
+        } else {
+            return back()->with('failed', 'Gagal menghapus Data!');
+        }
+    }
+
+    //gizi buruk
+    public function gb(Request $gb)
+    {
+        // Validasi input
+        $gb->validate([
+            'usia' => 'required|string|max:255',
+            'lk' => 'required|string',
+            'pr' => 'required|string',
+        ]);
+
+        // Simpan ke database
+        gb::create([
+            'usia' => $gb->usia,
+            'lk' => $gb->lk,
+            'pr' => $gb->pr,
+        ]);
+
+        // Cek apakah berhasil disimpan
+        if ($gb) {
+            return redirect()->route('admin.tambahgb')->with('success', 'Data berhasil ditambahkan!');
+        } else {
+            return redirect()->route('admin.tambahgb')->with('failed', 'Gagal menambahkan Data.');
+        }
+    }
+    public function tambahgb()
+    {
+        return view('admin.tambahgb');
+    }
+    public function editgb($id)
+    {
+        $gb = gb::find($id);
+        if (!$gb) {
+            return redirect()->route('admin.tambahgb')->with('failed', 'Data tidak ditemukan.');
+        }
+        return view('admin.editgb', compact('gb'));
+    }
+
+    public function postEditgb(Request $request, $id)
+    {
+        $request->validate([
+            'usia' => 'required|string|max:255',
+            'lk' => 'required|string',
+            'pr' => 'required|string',
+        ]);
+
+        // Menemukan data gb berdasarkan ID
+        $gb = gb::find($id);
+        if (!$gb) {
+            return redirect()->route('admin.tambahgb')->with('failed', 'Data tidak ditemukan.');
+        }
+
+        // Update data gb
+        $gb->usia = $request->input('usia');
+        $gb->lk = $request->input('lk');
+        $gb->pr = $request->input('pr');
+
+        // Simpan ke database
+        if ($gb->save()) {
+            return back()->with('success', 'Data berhasil diperbarui!');
+        } else {
+            return back()->with('failed', 'Data gagal diperbarui!');
+        }
+    }
+    public function deletegb($id)
+    {
+        $gb = gb::find($id);
+        $gb->delete();
+        if ($gb) {
+            return back()->with('success', 'Data berhasil dihapus!');
+        } else {
+            return back()->with('failed', 'Gagal menghapus Data!');
+        }
+    }
+
+    //golongan darah
+    public function gd(Request $gd)
+    {
+        // Validasi input
+        $gd->validate([
+            'nama' => 'required|string|max:255',
+            'lk' => 'required|string',
+            'pr' => 'required|string',
+        ]);
+
+        // Simpan ke database
+        gd::create([
+            'nama' => $gd->nama,
+            'lk' => $gd->lk,
+            'pr' => $gd->pr,
+        ]);
+
+        // Cek apakah berhasil disimpan
+        if ($gd) {
+            return redirect()->route('admin.tambahgd')->with('success', 'Data berhasil ditambahkan!');
+        } else {
+            return redirect()->route('admin.tambahgd')->with('failed', 'Gagal menambahkan Data.');
+        }
+    }
+    public function tambahgd()
+    {
+        return view('admin.tambahgd');
+    }
+    public function editgd($id)
+    {
+        $gd = gd::find($id);
+        if (!$gd) {
+            return redirect()->route('admin.tambahgd')->with('failed', 'Data tidak ditemukan.');
+        }
+        return view('admin.editgd', compact('gd'));
+    }
+
+    public function postEditgd(Request $request, $id)
+    {
+        $request->validate([
+            'nama' => 'required|string|max:255',
+            'lk' => 'required|string',
+            'pr' => 'required|string',
+        ]);
+
+        // Menemukan data gd berdasarkan ID
+        $gd = gd::find($id);
+        if (!$gd) {
+            return redirect()->route('admin.tambahgd')->with('failed', 'Data tidak ditemukan.');
+        }
+
+        // Update data gd
+        $gd->nama = $request->input('nama');
+        $gd->lk = $request->input('lk');
+        $gd->pr = $request->input('pr');
+
+        // Simpan ke database
+        if ($gd->save()) {
+            return back()->with('success', 'Data berhasil diperbarui!');
+        } else {
+            return back()->with('failed', 'Data gagal diperbarui!');
+        }
+    }
+    public function deletegd($id)
+    {
+        $gd = gd::find($id);
+        $gd->delete();
+        if ($gd) {
+            return back()->with('success', 'Data berhasil dihapus!');
+        } else {
+            return back()->with('failed', 'Gagal menghapus Data!');
+        }
+    }
+
+    //jamkesmas
+    public function jamkes(Request $jamkes)
+    {
+        // Validasi input
+        $jamkes->validate([
+            'nama' => 'required|string|max:255',
+            'acc' => 'required|string',
+            'jmlkp' => 'required|string',
+        ]);
+
+        // Simpan ke database
+        jamkes::create([
+            'nama' => $jamkes->nama,
+            'acc' => $jamkes->acc,
+            'jmlkp' => $jamkes->jmlkp,
+        ]);
+
+        // Cek apakah berhasil disimpan
+        if ($jamkes) {
+            return redirect()->route('admin.tambahjamkes')->with('success', 'Data berhasil ditambahkan!');
+        } else {
+            return redirect()->route('admin.tambahjamkes')->with('failed', 'Gagal menambahkan Data.');
+        }
+    }
+    public function tambahjamkes()
+    {
+        return view('admin.tambahjamkes');
+    }
+    public function editjamkes($id)
+    {
+        $jamkes = jamkes::find($id);
+        if (!$jamkes) {
+            return redirect()->route('admin.tambahjamkes')->with('failed', 'Data tidak ditemukan.');
+        }
+        return view('admin.editjamkes', compact('jamkes'));
+    }
+
+    public function postEditjamkes(Request $request, $id)
+    {
+        $request->validate([
+            'nama' => 'required|string|max:255',
+            'acc' => 'required|string',
+            'jmlkp' => 'required|string',
+        ]);
+
+        // Menemukan data jamkes berdasarkan ID
+        $jamkes = jamkes::find($id);
+        if (!$jamkes) {
+            return redirect()->route('admin.tambahjamkes')->with('failed', 'Data tidak ditemukan.');
+        }
+
+        // Update data jamkes
+        $jamkes->nama = $request->input('nama');
+        $jamkes->acc = $request->input('acc');
+        $jamkes->jmlkp = $request->input('jmlkp');
+
+        // Simpan ke database
+        if ($jamkes->save()) {
+            return back()->with('success', 'Data berhasil diperbarui!');
+        } else {
+            return back()->with('failed', 'Data gagal diperbarui!');
+        }
+    }
+    public function deletejamkes($id)
+    {
+        $jamkes = jamkes::find($id);
+        $jamkes->delete();
+        if ($jamkes) {
+            return back()->with('success', 'Data berhasil dihapus!');
+        } else {
+            return back()->with('failed', 'Gagal menghapus Data!');
+        }
+    }
+
+    //kelas sosial
+    public function kesos(Request $kesos)
+    {
+        // Validasi input
+        $kesos->validate([
+            'nama' => 'required|string|max:255',
+            'jml' => 'required|string',
+        ]);
+
+        // Simpan ke database
+        kesos::create([
+            'nama' => $kesos->nama,
+            'jml' => $kesos->jml,
+        ]);
+
+        // Cek apakah berhasil disimpan
+        if ($kesos) {
+            return redirect()->route('admin.tambahkesos')->with('success', 'Data berhasil ditambahkan!');
+        } else {
+            return redirect()->route('admin.tambahkesos')->with('failed', 'Gagal menambahkan Data.');
+        }
+    }
+    public function tambahkesos()
+    {
+        return view('admin.tambahkesos');
+    }
+    public function editkesos($id)
+    {
+        $kesos = kesos::find($id);
+        if (!$kesos) {
+            return redirect()->route('admin.tambahkesos')->with('failed', 'Data tidak ditemukan.');
+        }
+        return view('admin.editkesos', compact('kesos'));
+    }
+
+    public function postEditkesos(Request $request, $id)
+    {
+        $request->validate([
+            'nama' => 'required|string|max:255',
+            'jml' => 'required|string',
+        ]);
+
+        // Menemukan data kesos berdasarkan ID
+        $kesos = kesos::find($id);
+        if (!$kesos) {
+            return redirect()->route('admin.tambahkesos')->with('failed', 'Data tidak ditemukan.');
+        }
+
+        // Update data kesos
+        $kesos->nama = $request->input('nama');
+        $kesos->jml = $request->input('jml');
+
+        // Simpan ke database
+        if ($kesos->save()) {
+            return back()->with('success', 'Data berhasil diperbarui!');
+        } else {
+            return back()->with('failed', 'Data gagal diperbarui!');
+        }
+    }
+    public function deletekesos($id)
+    {
+        $kesos = kesos::find($id);
+        $kesos->delete();
+        if ($kesos) {
+            return back()->with('success', 'Data berhasil dihapus!');
+        } else {
+            return back()->with('failed', 'Gagal menghapus Data!');
+        }
+    }
+
+    //Kepala Keluarga
+    public function kk(Request $kk)
+    {
+        // Validasi input
+        $kk->validate([
+            'nama' => 'required|string|max:255',
+            'jml' => 'required|string',
+        ]);
+
+        // Simpan ke database
+        kk::create([
+            'nama' => $kk->nama,
+            'jml' => $kk->jml,
+        ]);
+
+        // Cek apakah berhasil disimpan
+        if ($kk) {
+            return redirect()->route('admin.tambahkk')->with('success', 'Data berhasil ditambahkan!');
+        } else {
+            return redirect()->route('admin.tambahkk')->with('failed', 'Gagal menambahkan Data.');
+        }
+    }
+    public function tambahkk()
+    {
+        return view('admin.tambahkk');
+    }
+    public function editkk($id)
+    {
+        $kk = kk::find($id);
+        if (!$kk) {
+            return redirect()->route('admin.tambahkk')->with('failed', 'Data tidak ditemukan.');
+        }
+        return view('admin.editkk', compact('kk'));
+    }
+
+    public function postEditkk(Request $request, $id)
+    {
+        $request->validate([
+            'nama' => 'required|string|max:255',
+            'jml' => 'required|string',
+        ]);
+
+        // Menemukan data kk berdasarkan ID
+        $kk = kk::find($id);
+        if (!$kk) {
+            return redirect()->route('admin.tambahkk')->with('failed', 'Data tidak ditemukan.');
+        }
+
+        // Update data kk
+        $kk->nama = $request->input('nama');
+        $kk->jml = $request->input('jml');
+
+        // Simpan ke database
+        if ($kk->save()) {
+            return back()->with('success', 'Data berhasil diperbarui!');
+        } else {
+            return back()->with('failed', 'Data gagal diperbarui!');
+        }
+    }
+    public function deletekk($id)
+    {
+        $kk = kk::find($id);
+        $kk->delete();
+        if ($kk) {
+            return back()->with('success', 'Data berhasil dihapus!');
+        } else {
+            return back()->with('failed', 'Gagal menghapus Data!');
+        }
+    }
+
+    //Kehamilan
+    public function kehamilan(Request $kehamilan)
+    {
+        // Validasi input
+        $kehamilan->validate([
+            'nama' => 'required|string|max:255',
+            'jml' => 'required|string',
+        ]);
+
+        // Simpan ke database
+        kehamilan::create([
+            'nama' => $kehamilan->nama,
+            'jml' => $kehamilan->jml,
+        ]);
+
+        // Cek apakah berhasil disimpan
+        if ($kehamilan) {
+            return redirect()->route('admin.tambahkehamilan')->with('success', 'Data berhasil ditambahkan!');
+        } else {
+            return redirect()->route('admin.tambahkehamilan')->with('failed', 'Gagal menambahkan Data.');
+        }
+    }
+    public function tambahkehamilan()
+    {
+        return view('admin.tambahkehamilan');
+    }
+    public function editkehamilan($id)
+    {
+        $kehamilan = kehamilan::find($id);
+        if (!$kehamilan) {
+            return redirect()->route('admin.tambahkehamilan')->with('failed', 'Data tidak ditemukan.');
+        }
+        return view('admin.editkehamilan', compact('kehamilan'));
+    }
+
+    public function postEditkehamilan(Request $request, $id)
+    {
+        $request->validate([
+            'nama' => 'required|string|max:255',
+            'jml' => 'required|string',
+        ]);
+
+        // Menemukan data kehamilan berdasarkan ID
+        $kehamilan = kehamilan::find($id);
+        if (!$kehamilan) {
+            return redirect()->route('admin.tambahkehamilan')->with('failed', 'Data tidak ditemukan.');
+        }
+
+        // Update data kehamilan
+        $kehamilan->nama = $request->input('nama');
+        $kehamilan->jml = $request->input('jml');
+
+        // Simpan ke database
+        if ($kehamilan->save()) {
+            return back()->with('success', 'Data berhasil diperbarui!');
+        } else {
+            return back()->with('failed', 'Data gagal diperbarui!');
+        }
+    }
+    public function deletekehamilan($id)
+    {
+        $kehamilan = kehamilan::find($id);
+        $kehamilan->delete();
+        if ($kehamilan) {
+            return back()->with('success', 'Data berhasil dihapus!');
+        } else {
+            return back()->with('failed', 'Gagal menghapus Data!');
+        }
+    }
+
+    //pekerjaan
+    public function pekerjaan(Request $pekerjaan)
+    {
+        // Validasi input
+        $pekerjaan->validate([
+            'nama' => 'required|string|max:255',
+            'lk' => 'required|string',
+            'pr' => 'required|string',
+        ]);
+
+        // Simpan ke database
+        pekerjaan::create([
+            'nama' => $pekerjaan->nama,
+            'lk' => $pekerjaan->lk,
+            'pr' => $pekerjaan->pr,
+        ]);
+
+        // Cek apakah berhasil disimpan
+        if ($pekerjaan) {
+            return redirect()->route('admin.tambahpekerjaan')->with('success', 'Data berhasil ditambahkan!');
+        } else {
+            return redirect()->route('admin.tambahpekerjaan')->with('failed', 'Gagal menambahkan Data.');
+        }
+    }
+    public function tambahpekerjaan()
+    {
+        return view('admin.tambahpekerjaan');
+    }
+    public function editpekerjaan($id)
+    {
+        $pekerjaan = pekerjaan::find($id);
+        if (!$pekerjaan) {
+            return redirect()->route('admin.tambahpekerjaan')->with('failed', 'Data tidak ditemukan.');
+        }
+        return view('admin.editpekerjaan', compact('pekerjaan'));
+    }
+
+    public function postEditpekerjaan(Request $request, $id)
+    {
+        $request->validate([
+            'nama' => 'required|string|max:255',
+            'lk' => 'required|string',
+            'pr' => 'required|string',
+        ]);
+
+        // Menemukan data pekerjaan berdasarkan ID
+        $pekerjaan = pekerjaan::find($id);
+        if (!$pekerjaan) {
+            return redirect()->route('admin.tambahpekerjaan')->with('failed', 'Data tidak ditemukan.');
+        }
+
+        // Update data pekerjaan
+        $pekerjaan->nama = $request->input('nama');
+        $pekerjaan->lk = $request->input('lk');
+        $pekerjaan->pr = $request->input('pr');
+
+        // Simpan ke database
+        if ($pekerjaan->save()) {
+            return back()->with('success', 'Data berhasil diperbarui!');
+        } else {
+            return back()->with('failed', 'Data gagal diperbarui!');
+        }
+    }
+    public function deletepekerjaan($id)
+    {
+        $pekerjaan = pekerjaan::find($id);
+        $pekerjaan->delete();
+        if ($pekerjaan) {
+            return back()->with('success', 'Data berhasil dihapus!');
+        } else {
+            return back()->with('failed', 'Gagal menghapus Data!');
+        }
+    }
+
+    //pendidikan
+    public function pendidikan(Request $pendidikan)
+    {
+        // Validasi input
+        $pendidikan->validate([
+            'nama' => 'required|string|max:255',
+            'lk' => 'required|string',
+            'pr' => 'required|string',
+        ]);
+
+        // Simpan ke database
+        pendidikan::create([
+            'nama' => $pendidikan->nama,
+            'lk' => $pendidikan->lk,
+            'pr' => $pendidikan->pr,
+        ]);
+
+        // Cek apakah berhasil disimpan
+        if ($pendidikan) {
+            return redirect()->route('admin.tambahpendidikan')->with('success', 'Data berhasil ditambahkan!');
+        } else {
+            return redirect()->route('admin.tambahpendidikan')->with('failed', 'Gagal menambahkan Data.');
+        }
+    }
+    public function tambahpendidikan()
+    {
+        return view('admin.tambahpendidikan');
+    }
+    public function editpendidikan($id)
+    {
+        $pendidikan = pendidikan::find($id);
+        if (!$pendidikan) {
+            return redirect()->route('admin.tambahpendidikan')->with('failed', 'Data tidak ditemukan.');
+        }
+        return view('admin.editpendidikan', compact('pendidikan'));
+    }
+
+    public function postEditpendidikan(Request $request, $id)
+    {
+        $request->validate([
+            'nama' => 'required|string|max:255',
+            'lk' => 'required|string',
+            'pr' => 'required|string',
+        ]);
+
+        // Menemukan data pendidikan berdasarkan ID
+        $pendidikan = pendidikan::find($id);
+        if (!$pendidikan) {
+            return redirect()->route('admin.tambahpendidikan')->with('failed', 'Data tidak ditemukan.');
+        }
+
+        // Update data pendidikan
+        $pendidikan->nama = $request->input('nama');
+        $pendidikan->lk = $request->input('lk');
+        $pendidikan->pr = $request->input('pr');
+
+        // Simpan ke database
+        if ($pendidikan->save()) {
+            return back()->with('success', 'Data berhasil diperbarui!');
+        } else {
+            return back()->with('failed', 'Data gagal diperbarui!');
+        }
+    }
+    public function deletependidikan($id)
+    {
+        $pendidikan = pendidikan::find($id);
+        $pendidikan->delete();
+        if ($pendidikan) {
+            return back()->with('success', 'Data berhasil dihapus!');
+        } else {
+            return back()->with('failed', 'Gagal menghapus Data!');
+        }
+    }
+
+    //Piramida Penduduk
+    public function pp(Request $pp)
+    {
+        // Validasi input
+        $pp->validate([
+            'usia' => 'required|string|max:255',
+            'lk' => 'required|string',
+            'pr' => 'required|string',
+        ]);
+
+        // Simpan ke database
+        pp::create([
+            'usia' => $pp->usia,
+            'lk' => $pp->lk,
+            'pr' => $pp->pr,
+        ]);
+
+        // Cek apakah berhasil disimpan
+        if ($pp) {
+            return redirect()->route('admin.tambahpp')->with('success', 'Data berhasil ditambahkan!');
+        } else {
+            return redirect()->route('admin.tambahpp')->with('failed', 'Gagal menambahkan Data.');
+        }
+    }
+    public function tambahpp()
+    {
+        return view('admin.tambahpp');
+    }
+    public function editpp($id)
+    {
+        $pp = pp::find($id);
+        if (!$pp) {
+            return redirect()->route('admin.tambahpp')->with('failed', 'Data tidak ditemukan.');
+        }
+        return view('admin.editpp', compact('pp'));
+    }
+
+    public function postEditpp(Request $request, $id)
+    {
+        $request->validate([
+            'usia' => 'required|string|max:255',
+            'lk' => 'required|string',
+            'pr' => 'required|string',
+        ]);
+
+        // Menemukan data pp berdasarkan ID
+        $pp = pp::find($id);
+        if (!$pp) {
+            return redirect()->route('admin.tambahpp')->with('failed', 'Data tidak ditemukan.');
+        }
+
+        // Update data pp
+        $pp->usia = $request->input('usia');
+        $pp->lk = $request->input('lk');
+        $pp->pr = $request->input('pr');
+
+        // Simpan ke database
+        if ($pp->save()) {
+            return back()->with('success', 'Data berhasil diperbarui!');
+        } else {
+            return back()->with('failed', 'Data gagal diperbarui!');
+        }
+    }
+    public function deletepp($id)
+    {
+        $pp = pp::find($id);
+        $pp->delete();
+        if ($pp) {
+            return back()->with('success', 'Data berhasil dihapus!');
+        } else {
+            return back()->with('failed', 'Gagal menghapus Data!');
+        }
+    }
+
+    //program keluarga harapan
+    public function pkh(Request $pkh)
+    {
+        // Validasi input
+        $pkh->validate([
+            'nama' => 'required|string|max:255',
+            'acc' => 'required|string',
+            'jmlkp' => 'required|string',
+        ]);
+
+        // Simpan ke database
+        pkh::create([
+            'nama' => $pkh->nama,
+            'acc' => $pkh->acc,
+            'jmlkp' => $pkh->jmlkp,
+        ]);
+
+        // Cek apakah berhasil disimpan
+        if ($pkh) {
+            return redirect()->route('admin.tambahpkh')->with('success', 'Data berhasil ditambahkan!');
+        } else {
+            return redirect()->route('admin.tambahpkh')->with('failed', 'Gagal menambahkan Data.');
+        }
+    }
+    public function tambahpkh()
+    {
+        return view('admin.tambahpkh');
+    }
+    public function editpkh($id)
+    {
+        $pkh = pkh::find($id);
+        if (!$pkh) {
+            return redirect()->route('admin.tambahpkh')->with('failed', 'Data tidak ditemukan.');
+        }
+        return view('admin.editpkh', compact('pkh'));
+    }
+
+    public function postEditpkh(Request $request, $id)
+    {
+        $request->validate([
+            'nama' => 'required|string|max:255',
+            'acc' => 'required|string',
+            'jmlkp' => 'required|string',
+        ]);
+
+        // Menemukan data pkh berdasarkan ID
+        $pkh = pkh::find($id);
+        if (!$pkh) {
+            return redirect()->route('admin.tambahpkh')->with('failed', 'Data tidak ditemukan.');
+        }
+
+        // Update data pkh
+        $pkh->nama = $request->input('nama');
+        $pkh->acc = $request->input('acc');
+        $pkh->jmlkp = $request->input('jmlkp');
+
+        // Simpan ke database
+        if ($pkh->save()) {
+            return back()->with('success', 'Data berhasil diperbarui!');
+        } else {
+            return back()->with('failed', 'Data gagal diperbarui!');
+        }
+    }
+    public function deletepkh($id)
+    {
+        $pkh = pkh::find($id);
+        $pkh->delete();
+        if ($pkh) {
+            return back()->with('success', 'Data berhasil dihapus!');
+        } else {
+            return back()->with('failed', 'Gagal menghapus Data!');
+        }
+    }
+
+    //raskin
+    public function raskin(Request $raskin)
+    {
+        // Validasi input
+        $raskin->validate([
+            'nama' => 'required|string|max:255',
+            'jml' => 'required|string',
+        ]);
+
+        // Simpan ke database
+        raskin::create([
+            'nama' => $raskin->nama,
+            'jml' => $raskin->jml,
+        ]);
+
+        // Cek apakah berhasil disimpan
+        if ($raskin) {
+            return redirect()->route('admin.tambahraskin')->with('success', 'Data berhasil ditambahkan!');
+        } else {
+            return redirect()->route('admin.tambahraskin')->with('failed', 'Gagal menambahkan Data.');
+        }
+    }
+    public function tambahraskin()
+    {
+        return view('admin.tambahraskin');
+    }
+    public function editraskin($id)
+    {
+        $raskin = raskin::find($id);
+        if (!$raskin) {
+            return redirect()->route('admin.tambahraskin')->with('failed', 'Data tidak ditemukan.');
+        }
+        return view('admin.editraskin', compact('raskin'));
+    }
+
+    public function postEditraskin(Request $request, $id)
+    {
+        $request->validate([
+            'nama' => 'required|string|max:255',
+            'jml' => 'required|string',
+        ]);
+
+        // Menemukan data raskin berdasarkan ID
+        $raskin = raskin::find($id);
+        if (!$raskin) {
+            return redirect()->route('admin.tambahraskin')->with('failed', 'Data tidak ditemukan.');
+        }
+
+        // Update data raskin
+        $raskin->nama = $request->input('nama');
+        $raskin->jml = $request->input('jml');
+
+        // Simpan ke database
+        if ($raskin->save()) {
+            return back()->with('success', 'Data berhasil diperbarui!');
+        } else {
+            return back()->with('failed', 'Data gagal diperbarui!');
+        }
+    }
+    public function deleteraskin($id)
+    {
+        $raskin = raskin::find($id);
+        $raskin->delete();
+        if ($raskin) {
+            return back()->with('success', 'Data berhasil dihapus!');
+        } else {
+            return back()->with('failed', 'Gagal menghapus Data!');
+        }
+    }
+
+    //status perkawinan
+    public function sk(Request $sk)
+    {
+        // Validasi input
+        $sk->validate([
+            'nama' => 'required|string|max:255',
+            'lk' => 'required|string',
+            'pr' => 'required|string',
+        ]);
+
+        // Simpan ke database
+        sk::create([
+            'nama' => $sk->nama,
+            'lk' => $sk->lk,
+            'pr' => $sk->pr,
+        ]);
+
+        // Cek apakah berhasil disimpan
+        if ($sk) {
+            return redirect()->route('admin.tambahsk')->with('success', 'Data berhasil ditambahkan!');
+        } else {
+            return redirect()->route('admin.tambahsk')->with('failed', 'Gagal menambahkan Data.');
+        }
+    }
+    public function tambahsk()
+    {
+        return view('admin.tambahsk');
+    }
+    public function editsk($id)
+    {
+        $sk = sk::find($id);
+        if (!$sk) {
+            return redirect()->route('admin.tambahsk')->with('failed', 'Data tidak ditemukan.');
+        }
+        return view('admin.editsk', compact('sk'));
+    }
+
+    public function postEditsk(Request $request, $id)
+    {
+        $request->validate([
+            'nama' => 'required|string|max:255',
+            'lk' => 'required|string',
+            'pr' => 'required|string',
+        ]);
+
+        // Menemukan data sk berdasarkan ID
+        $sk = sk::find($id);
+        if (!$sk) {
+            return redirect()->route('admin.tambahsk')->with('failed', 'Data tidak ditemukan.');
+        }
+
+        // Update data sk
+        $sk->nama = $request->input('nama');
+        $sk->lk = $request->input('lk');
+        $sk->pr = $request->input('pr');
+
+        // Simpan ke database
+        if ($sk->save()) {
+            return back()->with('success', 'Data berhasil diperbarui!');
+        } else {
+            return back()->with('failed', 'Data gagal diperbarui!');
+        }
+    }
+    public function deletesk($id)
+    {
+        $sk = sk::find($id);
+        $sk->delete();
+        if ($sk) {
+            return back()->with('success', 'Data berhasil dihapus!');
+        } else {
+            return back()->with('failed', 'Gagal menghapus Data!');
+        }
+    }
+
 }
