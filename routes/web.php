@@ -69,14 +69,11 @@ Route::get('/statsdesa', function () {
 Route::view('/kontak', 'kontak')->name('kontak');
 Route::post('/postkontak', [pageController::class, 'kontak'])->name('postKontak');
 Route::view('/karakteristikdesa', 'desa')->name('desa');
-// Route::view('/galeri', '/publikasi/galeri')->name('galeri');
 Route::get('/galeri', function () {
     $galerikegiatan = galerikegiatan::orderBy('created_at', 'DESC')->get();
     return view('/publikasi/galeri' , compact('galerikegiatan'));
 })->name('galeri');
 Route::get('/galeri/{slug}', [pageController::class, 'detailGaleri'])->name('detailGaleri');
-
-// Route::view('/agenda', '/publikasi/agenda')->name('agenda');
 Route::get('/agenda', function () {
     $agenda = agenda::get();
     return view('/publikasi/agenda' , compact('agenda'));
@@ -111,6 +108,8 @@ Route::get('/admin/login', [AdminController::class, 'showLoginForm'])->name('adm
 Route::post('admin/postLogin', [AdminController::class, 'postLogin'])->name('admin.postLogin');
 
 Route::post('admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
+
+//error page
 Route::get('/admin/logout', function() {
     abort(404);
 });
@@ -118,6 +117,57 @@ Route::get('/tambahAgenda', function() {
     abort(404);
 });
 Route::get('/tambahBerita', function() {
+    abort(404);
+});
+Route::get('/tambahGaleri', function() {
+    abort(404);
+});
+Route::get('/tambahPegawai', function() {
+    abort(404);
+});
+Route::get('/postkontak', function() {
+    abort(404);
+});
+Route::get('/tambahbsk', function() {
+    abort(404);
+});
+Route::get('/tambahburuh', function() {
+    abort(404);
+});
+Route::get('/tambahgb', function() {
+    abort(404);
+});
+Route::get('/tambahgd', function() {
+    abort(404);
+});
+Route::get('/tambahjamkes', function() {
+    abort(404);
+});
+Route::get('/tambahkesos', function() {
+    abort(404);
+});
+Route::get('/tambahkk', function() {
+    abort(404);
+});
+Route::get('/tambahkehamilan', function() {
+    abort(404);
+});
+Route::get('/tambahpekerjaan', function() {
+    abort(404);
+});
+Route::get('/tambahpendidikan', function() {
+    abort(404);
+});
+Route::get('/tambahpp', function() {
+    abort(404);
+});
+Route::get('/tambahpkh', function() {
+    abort(404);
+});
+Route::get('/tambahraskin', function() {
+    abort(404);
+});
+Route::get('/update-jumlah-penduduk', function() {
     abort(404);
 });
 Route::get('admin/postLogin', function() {
@@ -151,7 +201,7 @@ Route::middleware([IsAdmin::class])->group(function () {
     Route::get('/admin/editAgenda/{id}', [adminController::class,'editAgenda'])->name('admin.editAgenda');
     Route::get('/admin/deleteAgenda/{id}', [adminController::class,'deleteAgenda'])->name('admin.deleteAgenda');
     Route::get('/admin/selengkapnya/{id}', [AdminController::class,'bacaAduan'])->name('admin.bacaAduan');
-    Route::get('/admin/deleteAduan/{id}', [AdminController::class,'deleteAduan'])->name('admin.deleteAduan');
+    Route::post('/admin/deleteAduan/{id}', [AdminController::class,'deleteAduan'])->name('admin.deleteAduan');
     Route::get('/admin/editBerita/{id}', [AdminController::class,'editBerita'])->name('admin.editBerita');
     Route::get('/admin/deleteBerita/{id}', [adminController::class,'deleteBerita'])->name('admin.deleteBerita');
     Route::get('/admin/editGaleri/{id}', [AdminController::class,'editGaleri'])->name('admin.editGaleri');

@@ -525,9 +525,9 @@ class AdminController extends Controller
 
         $kontak->delete();
         if ($kontak) {
-            return back()->with('success', 'Data berhasil dihapus!');
+            return redirect()->route('admin.pengaduan')->with('success', 'Data berhasil dihapus!');
         } else {
-            return back()->with('failed', 'Gagal menghapus data!');
+            return redirect()->route('admin.pengaduan')->with('failed', 'Gagal menghapus data.');
         }
     }
     public function deleteBerita($id)

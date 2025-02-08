@@ -55,29 +55,55 @@
                             <div class="card-body">
                                 <h5 class="card-title text-center">Isi Pengaduan</h5>
                                 <div class="mt-4">
+                                <form action="/admin/deleteAduan/{{ $kontak->id }}" method="POST">
+                                    @csrf
                                     <div class="form-group">
                                         <label class="text-secondary mb-2">Nama</label>
                                         <input type="text" class="form-control border border-secondary form-control" name="name" value="{{ $kontak->name }}" readonly>
+                                        <span class="text-danger">
+                                            @error('name')
+                                              {{ $message }}
+                                            @enderror
+                                        </span>
                                     </div><br>
                                     <div class="form-group mt-1">
                                         <label class="text-secondary mb-2">Nomor HP</label>
                                         <input type="text" class="form-control border border-secondary form-control" name="nohp" value="{{ $kontak->nohp }}" readonly>
+                                        <span class="text-danger">
+                                            @error('nohp')
+                                              {{ $message }}
+                                            @enderror
+                                        </span>
                                     </div><br>
                                     <div class="form-group mt-1">
                                         <label class="text-secondary mb-2">Alamat</label>
                                         <input type="text" class="form-control border border-secondary form-control" name="alamat" value="{{ $kontak->alamat }}" readonly>
+                                        <span class="text-danger">
+                                            @error('alamat')
+                                              {{ $message }}
+                                            @enderror
+                                        </span>
                                     </div><br>
                                     <div class="form-group mt-1">
                                         <label class="text-secondary mb-2">Judul</label>
                                         <input type="text" class="form-control border border-secondary form-control" name="subject" value="{{ $kontak->subject }}" readonly>
+                                        <span class="text-danger">
+                                            @error('subject')
+                                              {{ $message }}
+                                            @enderror
+                                        </span>
                                     </div><br>
                                     <div class="form-group mt-1">
                                         <label class="text-secondary mb-2">Isi</label>
                                         <input type="text" class="form-control border border-secondary form-control" name="message" value="{{ $kontak->message }}" readonly>
+                                        <span class="text-danger">
+                                            @error('message')
+                                              {{ $message }}
+                                            @enderror
+                                        </span>
                                     </div><br>
-                                    <div class="text-center">
-                                        <a class="btn btn-outline-danger w-100" href="/admin/deleteAduan/{{ $kontak->id }}">Hapus</a>
-                                    </div>
+                                    <button type="submit" class="btn btn-danger mt-5">Hapus Data</button>
+                                </form>
                                 </div>
                             </div>
                         </div>

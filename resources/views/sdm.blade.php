@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Berita Desa Bantan Tua</title>
+  <title>Pemerintahan Desa Bantan Tua</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
 
@@ -79,20 +79,6 @@
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <!-- Breadcrumbs -->
-        <div class="row mb-8 page-title py-1" >
-        <div class="col-12 d-flex justify-content-center">
-            <nav class="breadcrumbs" data-aos="fade-up">
-            <ol class="breadcrumb bg-transparent px-3 py-2 rounded-3">
-                <li class="breadcrumb-item">
-                <a href="{{ route('home') }}" class="text-decoration-none">Beranda</a>
-                </li>
-                <li class="breadcrumb-item active" aria-current="page">Pemerintahan</li>
-            </ol>
-            </nav>
-        </div>
-        </div>
-        <!-- End Breadcrumbs -->
         <h2>Pemerintahan Desa</h2>
         <p>Struktur Pemerintahan Desa Bantan Tua.</p>
       </div><!-- End Section Title -->

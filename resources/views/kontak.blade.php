@@ -105,7 +105,7 @@
 
         </div>
 
-        <form action="{{ route('postKontak') }}" method="POST" data-aos="fade-up" data-aos-delay="400">
+        <form id="contactForm" action="{{ route('postKontak') }}" method="POST" data-aos="fade-up" data-aos-delay="400">
           @csrf
           <div class="row gy-4">
             <div class="col-md-6">
@@ -129,12 +129,45 @@
             </div>
 
             <div class="col-md-12 text-center">
-                <button type="submit" class="btn btn-primary shadow-sm">Kirim Pesan</button>
+                <button type="button" class="btn btn-primary shadow-sm" id="submitBtn">Kirim Pesan</button>
             </div>
 
             </div>
         </form><!-- End Contact Form -->
 
+        <!-- Modal Konfirmasi -->
+        <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="confirmModalLabel">Konfirmasi Pengiriman</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                Apakah anda yakin ingin mengirim pesan ini?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                <button type="button" class="btn btn-primary" id="confirmSend">Ya, Kirim</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><br><br>
+      <div class="col-lg-12">
+        <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="200">
+          <h2>Lokasi Desa Bantan Tua</h2>
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15952.341569107093!2d102.07639782857879!3d1.5953815999999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31d3f94367b27c61%3A0x6f77e10d79b2d2e6!2sDesa%20Bantan%20Tua!5e0!3m2!1sid!2sid!4v1707392920827!5m2!1sid!2sid" 
+            width="50%" 
+            height="400" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
       </div>
 
     </section><!-- /Contact Section -->
@@ -187,6 +220,25 @@
           @endif
       });
   </script>
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const submitBtn = document.getElementById("submitBtn");
+    const confirmSend = document.getElementById("confirmSend");
+    const contactForm = document.getElementById("contactForm");
+
+    submitBtn.addEventListener("click", function () {
+      // Tampilkan modal
+      var confirmModal = new bootstrap.Modal(document.getElementById("confirmModal"));
+      confirmModal.show();
+    });
+
+    confirmSend.addEventListener("click", function () {
+      // Kirim form jika dikonfirmasi
+      contactForm.submit();
+    });
+  });
+</script>
+
   <!-- Vendor JS Files -->
   <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
   <script src="{{ asset('assets/vendor/php-email-form/validate.js') }}"></script>

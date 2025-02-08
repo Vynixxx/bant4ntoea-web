@@ -34,6 +34,33 @@
   @include('/admin/header');
 
   <main id="main" class="main">
+    <!-- Modal Notifikasi -->
+    <div class="modal fade" id="notifModal" tabindex="-1" aria-labelledby="notifModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="notifModalLabel">
+                        @if (Session::get('success'))
+                            Berhasil!
+                        @elseif (Session::get('failed'))
+                            Gagal!
+                        @endif
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    @if (Session::get('success'))
+                        <p class="text-success">{{ Session::get('success') }}</p>
+                    @elseif (Session::get('failed'))
+                        <p class="text-danger">{{ Session::get('failed') }}</p>
+                    @endif
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <section class="section">
       <div class="row">
           <div class="card-body">
@@ -74,6 +101,15 @@
     </section>
 
   </main><!-- End #main -->
+  <script>
+      document.addEventListener("DOMContentLoaded", function () {
+          var notifModal = new bootstrap.Modal(document.getElementById('notifModal'));
+          
+          @if(Session::get('success') || Session::get('failed'))
+              notifModal.show();
+          @endif
+      });
+  </script>
 </body>
 
 </html>
