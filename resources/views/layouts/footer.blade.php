@@ -11,9 +11,9 @@
         <p>Bengkalis, 28752</p>
       </div>
       <div class="social-links d-flex mt-4">
-        <a href="https://www.facebook.com/desabantantua"><i class="bi bi-facebook"></i></a>
-        <a href="https://www.instagram.com/desabantantua?igsh=MTF5NWVzajE1Znlsbw=="><i class="bi bi-instagram"></i></a>
-        <a href="mailto:bantantua@desa.id" class="email">
+      <a href="https://www.facebook.com/desabantantua" class="facebook" data-bs-toggle="tooltip" title="Facebook Desa Bantan Tua"><i class="bi bi-facebook"></i></a>
+      <a href="https://www.instagram.com/desabantantua?igsh=MTF5NWVzajE1Znlsbw==" class="instagram" data-bs-toggle="tooltip" title="Instagram Desa Bantan Tua"><i class="bi bi-instagram"></i></a>
+      <a href="mailto:bantantua@desa.id" class="email" data-bs-toggle="tooltip" title="Email Desa Bantan Tua">
             <i class="bi bi-envelope"></i>
         </a>
       </div>
@@ -73,7 +73,7 @@
 </div>
 
 <div class="container copyright text-center mt-4">
-  <p>© <span>Copyright</span> <strong class="px-1 sitename">Bantan Tua</strong> <span>All Rights Reserved</span></p>
+  <p>© <span>Copyright</span> <strong class="px-1 sitename">Bantan Tua 2025</strong> <span>All Rights Reserved</span></p>
   <div class="credits">
     Designed by <a href="https://ti.polbeng.ac.id/prodi/profil/KSI.html">Politeknik Negeri Bengkalis</a>
   </div>

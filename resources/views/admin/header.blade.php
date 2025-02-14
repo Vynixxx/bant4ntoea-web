@@ -11,7 +11,7 @@
     <li class="nav-item dropdown pe-3">
     <div class="container">
       <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-        <i class="bi bi-person-circle fs-4"></i>
+        <i class="bi bi-person-circle fs-4" data-bs-toggle="tooltip" title="Profil Anda"></i>
       </a><!-- End Profile Iamge Icon -->
 
       <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -35,7 +35,7 @@
         <li>
         <form action="{{ route('admin.logout') }}" method="POST">
         @csrf
-        <button type="submit" class="btn btn-primary w-100">logout</button>
+        <button type="submit" class="btn btn-primary w-100">Keluar</button>
           </a>
          </form>
         </li>

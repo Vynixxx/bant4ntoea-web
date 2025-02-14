@@ -51,7 +51,7 @@
                     </div>
                     <div class="ps-3">
                       <!-- Editable Input -->
-                      <h6 id="jumlahPenduduk" class="editable" contenteditable="true">{{ $jumlahPenduduk }}</h6>
+                      <h6 id="jumlahPenduduk" class="editable" contenteditable="true" data-bs-toggle="tooltip" title="Ubah Jumlah Penduduk Disini">{{ $jumlahPenduduk }}</h6>
                     </div>
                   </div>
                 </div>
@@ -67,7 +67,7 @@
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                       <i class="bi bi-receipt"></i>
                     </div>
-                    <div class="ps-3">
+                    <div class="ps-3" data-bs-toggle="tooltip" title="Jumlah Pengaduan">
                       <h6>{{ $jumlahKontak }}</h6> <!-- Menampilkan jumlah pengaduan -->
                     </div>
                   </div>
@@ -86,7 +86,7 @@
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                       <i class="bi bi-calendar-event"></i>
                     </div>
-                    <div class="ps-3">
+                    <div class="ps-3" data-bs-toggle="tooltip" title="Jumlah Agenda">
                       <h6>{{ $jumlahAgenda }}</h6>
                     </div>
                   </div>
@@ -107,8 +107,8 @@
                   <h5 class="card-title">Berita Desa <span>| Terbaru</span></h5>
 
                   <div class="news">
-                  @foreach ($berita as $item)
-                      <div class="post-item clearfix">
+                  @foreach ($berita->take(3) as $item)
+                      <div class="post-item clearfix" data-bs-toggle="tooltip" title="{{ $item->judul }}">
                           <img src="{{ asset('/images/' . $item->gambar) }}" alt="{{ $item->judul }}">
                           <h4><a href="{{ route('admin.berita') }}">{{ $item->judul }}</a></h4>
                           <p>{{ Str::limit($item->berita, 100) }}...</p>
@@ -168,7 +168,15 @@
       });
   });
 </script>
-
+  <!-- tooltip -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+      var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+      });
+    });
+  </script>
 </body>
 
 </html>

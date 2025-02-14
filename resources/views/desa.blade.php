@@ -35,12 +35,12 @@
     <div class="topbar d-flex align-items-center">
       <div class="container d-flex justify-content-center justify-content-md-between">
         <div class="contact-info d-flex align-items-center">
-          <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:bantantua@desa.id">bantantua@desa.id</a></i>
+            <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:bantantua@desa.id" data-bs-toggle="tooltip" title="Klik disini untuk menghubungi via email">bantantua@desa.id</a></i>
         </div>
         <div class="social-links d-none d-md-flex align-items-center">
-          <a href="https://www.facebook.com/desabantantua" class="facebook"><i class="bi bi-facebook"></i></a>
-          <a href="https://www.instagram.com/desabantantua?igsh=MTF5NWVzajE1Znlsbw==" class="instagram"><i class="bi bi-instagram"></i></a>
-          <a href="mailto:bantantua@desa.id" class="email">
+          <a href="https://www.facebook.com/desabantantua" class="facebook" data-bs-toggle="tooltip" title="Facebook Desa Bantan Tua"><i class="bi bi-facebook"></i></a>
+          <a href="https://www.instagram.com/desabantantua?igsh=MTF5NWVzajE1Znlsbw==" class="instagram" data-bs-toggle="tooltip" title="Instagram Desa Bantan Tua"><i class="bi bi-instagram"></i></a>
+          <a href="mailto:bantantua@desa.id" class="email" data-bs-toggle="tooltip" title="Email Desa Bantan Tua">
               <i class="bi bi-envelope"></i>
           </a>
         </div>
@@ -53,16 +53,16 @@
         <a href="{{ route('home') }}" class="logo d-flex align-items-center">
           <!-- Uncomment the line below if you also wish to use an image logo -->
           <!-- <img src="assets/img/logo.png" alt=""> -->
-          <h1 class="sitename">Bantan Tua</h1>
+          <h1 class="sitename" data-bs-toggle="tooltip" title="Kembali ke Halaman Utama">Bantan Tua</h1>
         </a>
 
         <nav id="navmenu" class="navmenu">
           <ul>
-            <li><a href="{{ route('home') }}">Beranda</a></li>
-            <li><a href="{{ route('desa') }}" class="active">Tentang</a></li>
-            <li><a href="{{ route('sdm') }}">Pemerintahan</a></li>
-            <li><a href="{{ route('faq') }}">FAQ</a></li>
-            <li><a href="{{ route('kontak') }}">Kontak</a></li>
+            <li><a href="{{ route('home') }}" data-bs-toggle="tooltip" title="Beranda Utama">Beranda</a></li>
+            <li><a href="{{ route('desa') }}" class="active" data-bs-toggle="tooltip" title="Tentang Desa">Tentang</a></li>
+            <li><a href="{{ route('sdm') }}" data-bs-toggle="tooltip" title="Struktur Pemerintahan">Pemerintahan</a></li>
+            <li><a href="{{ route('faq') }}" data-bs-toggle="tooltip" title="Pertanyaan Seputar Desa">FAQ</a></li>
+            <li><a href="{{ route('kontak') }}" data-bs-toggle="tooltip" title="Kontak Desa">Kontak</a></li>
           </ul>
           <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
@@ -76,20 +76,6 @@
 
   <section class="bg-gray-100 py-12">
       <div class="container mx-auto px-6 lg:px-12">
-          <!-- Breadcrumbs -->
-          <div class="row mb-8 page-title py-1">
-              <div class="col-12 d-flex justify-content-center">
-                  <nav class="breadcrumbs" data-aos="fade-up">
-                      <ol class="breadcrumb bg-transparent px-3 py-2 rounded-3">
-                          <li class="breadcrumb-item">
-                              <a href="{{ route('home') }}" class="text-decoration-none">Beranda</a>
-                          </li>
-                          <li class="breadcrumb-item active" aria-current="page">Potensi Desa</li>
-                      </ol>
-                  </nav>
-              </div>
-          </div>
-          <!-- End Breadcrumbs -->
           <div class="text-center mb-10">
               <h2 class="fw-bold mb-4" data-aos="fade-up" data-aos-delay="100">
                   Memahami Potensi dan Karakteristik Desa
@@ -188,7 +174,15 @@
 
   <!-- Main JS File -->
   <script src="{{ asset('assets/js/main.js') }}"></script>
-
+  <!-- tooltip -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+      var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+      });
+    });
+  </script>
 </body>
 
 </html>

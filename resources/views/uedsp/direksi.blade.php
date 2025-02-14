@@ -34,20 +34,18 @@
 
   <main class="main">
     <!-- Page Title -->
-    <div class="page-title" data-aos="fade">
+    <div class="page-title" data-aos="fade-up">
       <div class="heading">
         <div class="container">
         <!-- Breadcrumbs -->
         <div class="row mb-8 page-title py-1" >
             <div class="col-12 d-flex justify-content-center">
-                <nav class="breadcrumbs" data-aos="fade-up">
                   <ol class="breadcrumb bg-transparent px-3 py-2 rounded-3">
                       <li class="breadcrumb-item">
                       <a href="{{ route('home') }}" class="text-decoration-none">Beranda</a>
                       </li>
                       <li class="breadcrumb-item active" aria-current="page">Pengurus UED-SP</li>
                   </ol>
-                </nav>
             </div>
         </div>
         <!-- End Breadcrumbs -->

@@ -40,14 +40,12 @@
         <!-- Breadcrumbs -->
           <div class="row mb-0 page-title py-1" >
             <div class="col-12 d-flex justify-content-center">
-              <nav class="breadcrumbs" data-aos="fade-up">
                 <ol class="breadcrumb bg-transparent px-3 py-2 rounded-3">
                   <li class="breadcrumb-item">
                     <a href="{{ route('home') }}" class="text-decoration-none">Beranda</a>
                   </li>
                   <li class="breadcrumb-item active" aria-current="page">Visi & Misi</li>
                 </ol>
-              </nav>
             </div>
           </div>
         <!-- End Breadcrumbs -->

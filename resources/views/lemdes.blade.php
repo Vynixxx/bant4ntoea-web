@@ -36,22 +36,20 @@
 
   <div class="container py-5">
        <!-- Breadcrumbs -->
-       <div class="row mb-8 page-title py-1" >
+       <div class="row mb-8 page-title py-1" data-aos="fade-up">
             <div class="col-12 d-flex justify-content-center">
-                <nav class="breadcrumbs" data-aos="fade-up">
                 <ol class="breadcrumb bg-transparent px-3 py-2 rounded-3">
                     <li class="breadcrumb-item">
                     <a href="{{ route('home') }}" class="text-decoration-none">Beranda</a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">Lembaga Desa</li>
                 </ol>
-                </nav>
             </div>
         </div>
         <!-- End Breadcrumbs -->
         <div class="row justify-content-center">
             <div class="col-lg-8">
-                <div class="card p-4">
+                <div class="card p-4" data-aos="fade-up">
                     <h2 class="text-center mb-4">Informasi Kelembagaan</h2>
                     <table class="table table-striped">
                         <tbody>
@@ -65,7 +63,7 @@
                             <tr><td>BUMDES</td><td>15 Orang</td></tr>
                             <tr><td>UED - SP</td><td>6 Orang</td></tr>
                         </tbody>
-                    </table>
+                    </table><br><br>
                     
                     <h3 class="section-title">Kelembagaan Kemasyarakatan</h3>
                     <ul class="list-group">

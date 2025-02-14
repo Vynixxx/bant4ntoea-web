@@ -33,20 +33,18 @@
   @include('layouts.header1')
 
   <main class="main">
-  <div class="page-title py-1" data-aos="fade">
+  <div class="page-title py-1" data-aos="fade-up">
     <section class="village-development py-5">
         <div class="container">
           <!-- Breadcrumbs -->
           <div class="row mb-4">
             <div class="col-12 d-flex justify-content-center">
-              <nav class="breadcrumbs" data-aos="fade">
                 <ol class="breadcrumb bg-transparent px-3 py-2 rounded-3">
                   <li class="breadcrumb-item">
                     <a href="{{ route('home') }}" class="text-decoration-none">Beranda</a>
                   </li>
                   <li class="breadcrumb-item active" aria-current="page">Bidang Industri</li>
                 </ol>
-              </nav>
             </div>
             <!-- Faktor Penentu Kemajuan Desa -->
             <div class="row justify-content-center text-center" data-aos="fade">

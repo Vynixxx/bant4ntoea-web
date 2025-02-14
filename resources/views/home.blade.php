@@ -43,7 +43,7 @@
           <div class="carousel-container">
             <h2 class="text-center mt-2">Selamat Datang di Website Desa Bantan Tua</h2>
             <p>Temukan informasi lengkap seputar Desa Bantan Tua di website resmi kami.</p>
-            <a href="#about" class="btn-get-started">Jelajahi disini</a>
+            <a href="#about" class="btn-get-started" data-bs-toggle="tooltip" title="Klik di sini untuk lebih detail">Jelajahi disini</a>
           </div>
         </div><!-- End Carousel Item -->
 
@@ -74,7 +74,8 @@
                 style="border:0;" 
                 allowfullscreen="" 
                 loading="lazy" 
-                referrerpolicy="no-referrer-when-downgrade">
+                referrerpolicy="no-referrer-when-downgrade"
+                data-bs-toggle="tooltip" title="Peta Desa Bantan Tua">
               </iframe>
             </div>
             <p>Desa Bantan Tua terletak di Kecamatan Bantan, Kabupaten Bengkalis, Provinsi Riau. Desa ini memiliki keindahan alam yang memukau serta kaya akan budaya lokal. Kehidupan masyarakatnya yang mayoritas bekerja di bidang pertanian dan perikanan menjadikan desa ini sebagai pusat potensi ekonomi lokal.</p>
@@ -95,8 +96,8 @@
               </p>
 
               <div class="position-relative mt-4">
-                <img src="assets/img/about-2.jpg" class="img-fluid rounded-4" alt="Keindahan Desa Bantan Tua">
-                <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox pulsating-play-btn"></a>
+                <img src="assets/img/tentang.jpg" class="img-fluid rounded-4" alt="Pemerintahan Desa Bantan Tua">
+                <a href="https://youtu.be/bDB8_twvRw8?si=dKG2dX_199Ecge9i " class="glightbox pulsating-play-btn"></a>
               </div>
             </div>
           </div>
@@ -112,24 +113,30 @@
             <div class="row gy-4 align-items-center">
                 <div class="col-12 d-flex justify-content-between align-items-center" data-aos="fade-up">
                     <h3>Berita Terkini</h3>
-                    <p class="mb-0"><a href="{{ route('news') }}">Selengkapnya</a></p>
+                    <p class="mb-0"><a href="{{ route('news') }}" data-bs-toggle="tooltip" title="Berita Selengkapnya">Selengkapnya</a></p>
                 </div>
-            </div>
+            </div><br>
 
             <div class="row gy-4">
-              @foreach ($berita as $b)
-                  <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
-                      <div class="card-item">
-                          <!-- Gambar Berita -->
-                          <img src="{{ asset('/images/' . $b->gambar) }}" alt="Gambar Berita" class="img-fluid mb-3" style="width:100%; max-width:300px;">
-
-                          <h4><a href="#" class="stretched-link">{{ $b->judul }}</a></h4>
-                          <p>{{ Str::limit($b->berita, 100, '...') }}</p>
-                          <small class="text-muted">Tanggal: {{ $b->tanggal }} | Tag: {{ $b->tag }}</small>
-                      </div>
-                  </div><!-- End Card Item -->
+              @foreach ($berita->take(3) as $b)
+                <div class="col-12 col-sm-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                  <div class="card shadow-sm border-0 h-100" data-bs-toggle="tooltip" title="{{ $b->judul }}">
+                    <img src="{{ asset('/images/' . $b->gambar) }}" alt="Gambar Berita" class="card-img-top img-fluid" style="object-fit: cover; height: 200px;">
+                    <div class="card-body">
+                      <h5 class="card-title">
+                        <a href="{{ route('detailBerita', ['slug' => $b->slug]) }}" class="stretched-link text-decoration-none text-dark">
+                          {{ $b->judul }}
+                        </a>
+                      </h5>
+                      <p class="card-text">{{ Str::limit($b->berita, 100, '...') }}</p>
+                    </div>
+                    <div class="card-footer bg-white border-0">
+                      <small class="text-muted">Tanggal: {{ $b->tanggal }} | Tag: {{ $b->tag }}</small>
+                    </div>
+                  </div>
+                </div><!-- End Card Item -->
               @endforeach
-          </div><!-- End Row -->
+            </div><!-- End Row -->
 
         </div>
     </section><!-- /Berita Terkini Section -->
@@ -184,10 +191,10 @@
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
         <div class="row gy-5 justify-content-center">
-            @foreach ($kepegawaian as $index => $kp)
+            @foreach ($kepegawaian->take(3) as $index => $kp)
                 <div class="col-xl-4 col-md-6 col-sm-12 d-flex justify-content-center align-items-center" data-aos="zoom-in" data-aos-delay="{{ 200 * ($index + 1) }}">
                     <div class="team-member text-center">
-                        <div class="member-img">
+                        <div class="member-img" data-bs-toggle="tooltip" title="{{ $kp->jabatan }}">
                             <img src="{{ asset('/images/' . $kp->gambar) }}" class="img-fluid rounded-3" style="object-fit: cover; width: 100%; height: 500px;" alt="{{ $kp->nama }}">
                         </div>
                         <div class="member-info">
@@ -264,7 +271,7 @@ Jika ada pertanyaan lain, silakan hubungi kami melalui kontak yang tersedia di w
           </div>
           <div class="col-lg-7">
             <p>
-            Desa Bantan Tua terletak di Kabupaten Bengkalis, Provinsi Riau. Anda dapat mengakses lokasi ini melalui Google Maps dengan mencari "Desa Bantan Tua." atau <a href="https://maps.app.goo.gl/phQDUkhnhm5Qm1wh6">klik disini</a></p>
+            Desa Bantan Tua terletak di Kabupaten Bengkalis, Provinsi Riau. Anda dapat mengakses lokasi ini melalui Google Maps dengan mencari "Desa Bantan Tua." atau <a href="https://maps.app.goo.gl/phQDUkhnhm5Qm1wh6" data-bs-toggle="tooltip" title="Peta Desa Bantan Tua">klik disini</a></p>
           </div>
         </div><!-- End F.A.Q Item-->
 
@@ -308,22 +315,47 @@ Jika ada pertanyaan lain, silakan hubungi kami melalui kontak yang tersedia di w
           <div class="row gy-4">
             <div class="col-md-6">
                 <input type="text" name="name" class="form-control" placeholder="Nama Lengkap" required>
+                <span class="text-danger">
+                  @error('name')
+                    {{ 'kolom ini harus diisi' }}
+                  @enderror
+                </span>
             </div>
 
             <div class="col-md-6">
                 <input type="text" id="nohp" class="form-control" name="nohp" placeholder="Nomor Telpon" required>
+                <span class="text-danger">
+                  @error('nohp')
+                    {{ 'kolom ini harus diisi' }}
+                  @enderror
+                </span>
             </div>
 
             <div class="col-md-12">
                 <input type="text" class="form-control" name="alamat" placeholder="Alamat" required>
+                <span class="text-danger">
+                  @error('alamat')
+                    {{ 'kolom ini harus diisi' }}
+                  @enderror
+                </span>
             </div> 
 
             <div class="col-md-12">
                 <input type="text" class="form-control" name="subject" placeholder="Judul" required>
+                <span class="text-danger">
+                  @error('subject')
+                    {{ 'kolom ini harus diisi' }}
+                  @enderror
+                </span>
             </div>
 
             <div class="col-md-12">
                 <textarea class="form-control" name="message" rows="6" placeholder="Pesan" required></textarea>
+                <span class="text-danger">
+                  @error('message')
+                    {{ 'kolom ini harus diisi' }}
+                  @enderror
+                </span>
             </div>
 
             <div class="col-md-12 text-center">
@@ -456,6 +488,15 @@ Jika ada pertanyaan lain, silakan hubungi kami melalui kontak yang tersedia di w
         }
 
         requestAnimationFrame(animateCounter);
+      });
+    });
+  </script>
+  <!-- tooltip -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+      var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
       });
     });
   </script>

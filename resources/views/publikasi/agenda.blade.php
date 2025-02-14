@@ -41,14 +41,12 @@
         <!-- Breadcrumbs -->
         <div class="row mb-8 page-title py-1" >
             <div class="col-12 d-flex justify-content-center">
-                <nav class="breadcrumbs" data-aos="fade-up">
                   <ol class="breadcrumb bg-transparent px-3 py-2 rounded-3">
                       <li class="breadcrumb-item">
                       <a href="{{ route('home') }}" class="text-decoration-none">Beranda</a>
                       </li>
                       <li class="breadcrumb-item active" aria-current="page">Agenda Desa</li>
                   </ol>
-                </nav>
             </div>
         </div>
         <!-- End Breadcrumbs -->
@@ -58,7 +56,7 @@
       <div class="row gy-4">
         @foreach ($agenda as $agenda)
           <div class="col-lg-4" data-aos="fade-up" data-aos-delay="{{ $loop->iteration * 100 }}">
-            <div class="card-item border rounded-3 shadow-sm p-3">
+            <div class="card-item border rounded-3 shadow-sm p-3" data-bs-toggle="tooltip" title="{{ $agenda->judul }}">
               <h4><a href="{{ route('detailAgenda', ['slug' => $agenda->slug]) }}" class="stretched-link text-decoration-none text-dark">{{ $agenda->judul }}</a></h4>
               <p>{{ Str::limit($agenda->keterangan, 100, '...') }}</p>
               <small class="text-muted">{{ $agenda->tanggal }}</small>
