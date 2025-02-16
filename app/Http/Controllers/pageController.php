@@ -16,10 +16,22 @@ class pageController extends Controller
         // Validasi input
         $kontak->validate([
             'name' => 'required|string|max:255',
-            'nohp' => 'required|string|max:15',
+            'nohp' => [
+                'required',
+                'string',
+                'max:15',
+                'regex:/^62\d{8,11}$/', // Harus diawali dengan 62 dan panjang total 10-13 digit
+            ],
             'alamat' => 'required|string|max:255',
             'subject' => 'required|string|max:255',
             'message' => 'required|string',
+        ], [
+            'name.required' => 'Kolom ini harus diisi.',
+            'nohp.required' => 'Kolom ini harus diisi.',
+            'nohp.regex' => 'Pastikan nomor hp diawali dengan 628xxx.',
+            'alamat.required' => 'Kolom ini harus diisi.',
+            'subject.required' => 'Kolom ini harus diisi.',
+            'message.required' => 'Kolom ini harus diisi.',
         ]);
 
         // Simpan data ke database

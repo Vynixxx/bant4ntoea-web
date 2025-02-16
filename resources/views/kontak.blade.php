@@ -112,7 +112,7 @@
                 <input type="text" name="name" class="form-control" placeholder="Nama Lengkap" required>
                 <span class="text-danger">
                   @error('name')
-                    {{ 'kolom ini harus diisi' }}
+                    {{ $message }}
                   @enderror
                 </span>
             </div>
@@ -122,7 +122,7 @@
                 <input type="text" id="nohp" class="form-control" name="nohp" placeholder="Nomor Telpon" required>
                 <span class="text-danger">
                   @error('nohp')
-                    {{ 'kolom ini harus diisi' }}
+                    {{ $message }}
                   @enderror
                 </span>
             </div>
@@ -131,7 +131,7 @@
                 <input type="text" class="form-control" name="alamat" placeholder="Alamat" required>
                 <span class="text-danger">
                   @error('alamat')
-                    {{ 'kolom ini harus diisi' }}
+                    {{ $message }}
                   @enderror
                 </span>
             </div> 
@@ -140,7 +140,7 @@
                 <input type="text" class="form-control" name="subject" placeholder="Judul" required>
                 <span class="text-danger">
                   @error('subject')
-                    {{ 'kolom ini harus diisi' }}
+                    {{ $message }}
                   @enderror
                 </span>
             </div>
@@ -149,7 +149,7 @@
                 <textarea class="form-control" name="message" rows="6" placeholder="Pesan" required></textarea>
                 <span class="text-danger">
                   @error('message')
-                    {{ 'kolom ini harus diisi' }}
+                    {{ $message }}
                   @enderror
                 </span>
             </div>
