@@ -404,6 +404,25 @@ Jika ada pertanyaan lain, silakan hubungi kami melalui kontak yang tersedia di w
         </div>
     </div>
     @endif
+    <!-- Modal Notifikasi Error -->
+    <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header text-white">
+                        <h5 class="modal-title" id="errorModalLabel">Gagal!</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                            @foreach ($errors->all() as $error)
+                                <p>{{ 'Gagal mengirim pesan! Silahkan ulangi lagi.' }}</p>
+                            @endforeach
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    </div>
+                </div>
+            </div>
+        </div>
   </main>
 
   @include('layouts.footer')
@@ -431,6 +450,14 @@ Jika ada pertanyaan lain, silakan hubungi kami melalui kontak yang tersedia di w
           
           @if(Session::has('success'))
               notifModal.show();
+          @endif
+      });
+  </script>
+  <script>
+      document.addEventListener("DOMContentLoaded", function() {
+          @if ($errors->any())
+              var errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
+              errorModal.show();
           @endif
       });
   </script>

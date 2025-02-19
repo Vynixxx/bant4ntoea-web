@@ -14,7 +14,7 @@ class pageController extends Controller
     {
         
         // Validasi input
-        $kontak->validate([
+        $validated = $kontak->validate([
             'name' => 'required|string|max:255',
             'nohp' => [
                 'required',
@@ -35,16 +35,12 @@ class pageController extends Controller
         ]);
 
         // Simpan data ke database
-        kontak::create([
-            'name' => $kontak->name,
-            'nohp' => $kontak->nohp,
-            'alamat' => $kontak->alamat,
-            'subject' => $kontak->subject,
-            'message' => $kontak->message,
-        ]);
-
-        // Redirect kembali dengan notifikasi sukses
-        return redirect()->back()->with('success', 'Pesan Anda telah terkirim.');
+        try {
+            kontak::create($validated);
+            return redirect()->back()->with('success', 'Pesan Anda telah terkirim.');
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => 'Terjadi kesalahan, coba lagi.']);
+        }
     }
 
     public function detailBerita($slug)
