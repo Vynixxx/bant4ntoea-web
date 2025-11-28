@@ -43,11 +43,13 @@
     </div>
 
     <div class="col-lg-2 col-md-3 footer-links">
-      <h4>Publikasi</h4>
+      <h4>Regulasi</h4>
       <ul>
-        <li><a href="{{ route('agenda') }}">Agenda</a></li>
-        <li><a href="{{ route('news') }}">Berita Terkini</a></li>
-        <li><a href="{{ route('galeri') }}">Galeri Kegiatan</a></li>
+        <li><a href="{{ route('regulasiuu') }}">Undang-Undang</a></li>
+        <li><a href="{{ route('regulasicamat') }}">Peraturan Camat</a></li>
+        <li><a href="{{ route('regulasibupati') }}">Peraturan Bupati</a></li>
+        <li><a href="{{ route('regulasigubernur') }}">Peraturan Gubernur</a></li>
+        <li><a href="{{ route('regulasipresiden') }}">Peraturan Presiden</a></li>
       </ul>
     </div>
 
@@ -67,6 +69,17 @@
         <li><a href="{{ route('uedspprofil') }}">Profil</a></li>
         <li><a href="{{ route('uedspdireksi') }}">Pengurus</a></li>
       </ul>
+
+      <h4  class="mt-4">Publikasi</h4>
+      <ul>
+        <li><a href="{{ route('agenda') }}">Agenda</a></li>
+        <li><a href="{{ route('news') }}">Berita Terkini</a></li>
+        <li><a href="{{ route('galeri') }}">Galeri Kegiatan</a></li>
+      </ul>
+    </div>
+
+    <div class="col-lg-2 col-md-3 footer-links">
+      
     </div>
   </div>
 

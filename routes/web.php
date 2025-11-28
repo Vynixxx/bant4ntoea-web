@@ -103,6 +103,13 @@ Route::view('/profiluedsp', 'uedsp/profil')->name('uedspprofil');
 Route::view('/direksiuedsp', 'uedsp/direksi')->name('uedspdireksi');
 Route::view('/informasiuedsp', 'uedsp/informasi')->name('uedspinformasi');
 
+// regulasi
+Route::view('/uu', 'regulasi/uu')->name('regulasiuu');
+Route::view('/camat', 'regulasi/camat')->name('regulasicamat');
+Route::view('/bupati', 'regulasi/bupati')->name('regulasibupati');
+Route::view('/gubernur', 'regulasi/gubernur')->name('regulasigubernur');
+Route::view('/presiden', 'regulasi/presiden')->name('regulasipresiden');
+
 // admin
 Route::get('/admin/login', [AdminController::class, 'showLoginForm'])->name('admin.login');
 Route::post('admin/postLogin', [AdminController::class, 'postLogin'])->name('admin.postLogin');
